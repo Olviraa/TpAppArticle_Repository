@@ -4,14 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\HomeController1.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Views\Shared\Class.cshtml" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
 </Project>
