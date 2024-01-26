@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Toto\\.nuget\\packages\\": {}
+    "C:\\Users\\olvir\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Toto\\Documents\\GitHub\\TpAppArticle_Repository\\WebAppAdmin\\WebAppAdmin.csproj",
+      "projectUniqueName": "C:\\Projet_Article_GitHut\\TpAppArticle_Repository\\WebAppAdmin\\WebAppAdmin.csproj",
       "projectName": "WebAppAdmin",
-      "projectPath": "C:\\Users\\Toto\\Documents\\GitHub\\TpAppArticle_Repository\\WebAppAdmin\\WebAppAdmin.csproj",
-      "packagesPath": "C:\\Users\\Toto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Toto\\Documents\\GitHub\\TpAppArticle_Repository\\WebAppAdmin\\obj\\",
+      "projectPath": "C:\\Projet_Article_GitHut\\TpAppArticle_Repository\\WebAppAdmin\\WebAppAdmin.csproj",
+      "packagesPath": "C:\\Users\\olvir\\.nuget\\packages\\",
+      "outputPath": "C:\\Projet_Article_GitHut\\TpAppArticle_Repository\\WebAppAdmin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Toto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\olvir\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
