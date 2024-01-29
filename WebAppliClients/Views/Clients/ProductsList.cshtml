@@ -1,0 +1,35 @@
+﻿@using WebAppliClients.Models.ViewModel
+@model ListViewModel
+
+<div class="container mt-5">
+    <h2>Liste des Produits</h2>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité Disponible</th>
+              @*   <th>Action</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produit in Model.ListProduit)
+            {
+                <tr>
+                    <td>@produit.Nom</td>
+                    <td>@produit.Prix</td>
+                    <td>@produit.QuantiteDisponible</td>
+                    <td>
+                         <a class="btn btn-primary" href="@Url.Action("Detail", new { id = produit.ID })">Détail</a> 
+                        <a asp-action="ProductDetail" asp-route-id="@produit.ID">Détail</a>
+                    </td>
+                </tr>
+            } 
+        </tbody>
+    </table>
+
+    <!-- Ajoutez un bouton pour visualiser le panier -->
+    <a class="btn btn-success" href="@Url.Action("Index", "Panier")">Voir le Panier</a>
+</div>
