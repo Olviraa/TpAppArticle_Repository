@@ -1,4 +1,30 @@
-﻿<h3>
-    Liste des articles
-    <br />
+﻿@using ModelsCommun
+@using WebAppAdmin.Views.Admin
+
+    @model List<Produit>
+
+<h3>
+    Liste des articles    
+    
 </h3>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Produit</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantité</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (var produit in Model)
+        {
+            <tr>
+                <td>@produit.ID</td>
+                <td>@produit.Nom</td>
+                <td>@produit.Prix</td>
+                <td>@produit.QuantiteDisponible</td>
+            </tr>
+        }
+    </tbody>
+</table>

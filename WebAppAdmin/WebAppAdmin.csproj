@@ -14,4 +14,8 @@
     <Content Remove="Views\Shared\Class.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ModelsCommun\ModelsCommun.csproj" />
+  </ItemGroup>
+
 </Project>
