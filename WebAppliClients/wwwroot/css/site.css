@@ -16,7 +16,8 @@ html {
   position: relative;
   min-height: 100%;
 }
+/*body {
+    background-image: url(frame.jpg);
+    text-emphasis-position:left;
 
-body {
-  margin-bottom: 60px;
-}
+}*/

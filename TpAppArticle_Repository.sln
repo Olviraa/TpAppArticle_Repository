@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelsCommun", "ModelsCommu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiVenteArticles", "ApiVenteArticles\ApiVenteArticles.csproj", "{EB1F0940-676B-4EF6-813E-D8AC1C86E82B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppliClients", "WebAppliClients\WebAppliClients.csproj", "{339D3414-A725-4305-AC60-531D34466D05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EB1F0940-676B-4EF6-813E-D8AC1C86E82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB1F0940-676B-4EF6-813E-D8AC1C86E82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB1F0940-676B-4EF6-813E-D8AC1C86E82B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339D3414-A725-4305-AC60-531D34466D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339D3414-A725-4305-AC60-531D34466D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339D3414-A725-4305-AC60-531D34466D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339D3414-A725-4305-AC60-531D34466D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
