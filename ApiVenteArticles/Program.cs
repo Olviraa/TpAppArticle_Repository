@@ -20,6 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // J'indique quels sont les service qui peuvent �tre inject�s dans mes controllers
 builder.Services.AddScoped<IProduitService, ProduitService>();
+builder.Services.AddScoped<IProduitVenduService, ProduitVenduService>();
+builder.Services.AddScoped<IVenteService, VenteService>();
 //builder.Services.AddScoped<CategoryService>();
 
 
