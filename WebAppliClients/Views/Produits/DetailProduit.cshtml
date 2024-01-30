@@ -1,0 +1,60 @@
+﻿@using ModelsCommun
+
+@model Produit
+
+<p><h4>Information sur le produit selectionné </h4></p>
+
+<div class="container mt-5">
+    <h3>Détails du Produit</h3>
+    <hr>
+
+    <dl class="row">
+        <dt class="col-sm-2">Nom</dt>
+        <dd class="col-sm-10">@Model.Nom</dd>
+
+        <dt class="col-sm-2">Prix</dt>
+        <dd class="col-sm-10">@Model.Prix</dd>
+
+        <dt class="col-sm-2">Quantité Disponible</dt>
+        <dd class="col-sm-10">@Model.QuantiteDisponible</dd>
+    </dl>
+
+    <form id="addToCartForm">
+        <label for="quantity">Quantité:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="@Model.QuantiteDisponible" value="1">
+
+        <button type="button" class="btn btn-primary" onclick="ajouterAuPanier()">Ajouter au Panier</button>
+    </form>
+</div>
+
+<script>
+    function ajouterAuPanier() {
+        var productId = @Html.Raw(Json.Serialize(Model.ID));
+        var productName = '@Html.Raw(Json.Serialize(Model.Nom))';
+        var productPrice = @Html.Raw(Json.Serialize(Model.Prix));
+        var maxQuantity = @Html.Raw(Json.Serialize(Model.QuantiteDisponible));
+        var selectedQuantity = document.getElementById('quantity').value;
+
+        // Vérifiez si la quantité sélectionnée est valide
+        if (selectedQuantity <= 0 || selectedQuantity > maxQuantity) {
+            alert('Quantité non valide. Veuillez sélectionner une quantité entre 1 et ' + maxQuantity + '.');
+            return;
+        }
+
+        // Ajouter le produit dans le panier
+        var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        var newItem = {
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: selectedQuantity
+        };
+
+        cartItems.push(newItem);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        // Redirigez vers la liste des produits après avoir ajouté le produit au panier
+        window.location.href = '/list';
+    }
+</script>
