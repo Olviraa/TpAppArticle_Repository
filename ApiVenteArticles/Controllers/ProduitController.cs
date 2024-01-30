@@ -46,11 +46,10 @@ namespace ApiVenteArticles.Controllers
 
         [HttpPost]
         [Route("update")]
-
-        public Produit UpdateProduct(int id, string nom, double prix, int quantitedispo)
+        public Produit UpdateProduct(Produit productToUpdate)
 
         {
-            var updatedProduct = _produitService.UpdateProduct(id, nom, prix, quantitedispo);
+            var updatedProduct = _produitService.UpdateProduct(productToUpdate.ID, productToUpdate.Nom, productToUpdate.Prix, productToUpdate.QuantiteDisponible);
             return updatedProduct;
         }
 

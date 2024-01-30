@@ -18,8 +18,8 @@
     </thead>
     <tbody class="table-group-divider">
         @foreach (var produit in Model)
-        {
-            <tr>
+        {            
+            <tr onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">
                 <td>@produit.ID</td>
                 <td>@produit.Nom</td>
                 <td>@produit.Prix</td>
