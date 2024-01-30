@@ -36,12 +36,18 @@ namespace ApiVenteArticles.Controllers
 
         [HttpPost]
         [Route("add")]
-        public ProduitVendu AddProduitVendu(int idvente, int idproduit, int quantite)
+        public ProduitVendu AddProduitVendu()
         {
-            var addedProduitVendu = _produitVenduService.AddProduitVendre(idvente, idproduit, quantite);
+            var quantite = Request.Form["quantite"];
+            var idvente = Request.Form["idvente"];
+            var idproduit = Request.Form["idprodui"];
+
+            var addedProduitVendu = _produitVenduService.AddProduitVendre(int.Parse(quantite), int.Parse(idvente), int.Parse(idproduit));
+            
             return addedProduitVendu;
         }
 
+       
 
         [HttpPost]
         [Route("delete")]

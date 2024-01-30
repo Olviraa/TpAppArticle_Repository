@@ -1,0 +1,35 @@
+﻿@* @model
+
+@using (Html.BeginForm("ValiderPanier", "Vente", FormMethod.Post))
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Identifiant Produit</th>
+                <th>Identifiant Vente</th>
+                <th>Quantité</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ProduitVendu in Model )
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Produits[i].idproduit)
+                        @Html.HiddenFor(model => model.Produits[i].idproduit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Produits[i].idvente)
+                        @Html.HiddenFor(model => model.Produits[i].idvente)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Produits[i].quantite)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="submit" value="Valider Panier" />
+}
+ *@

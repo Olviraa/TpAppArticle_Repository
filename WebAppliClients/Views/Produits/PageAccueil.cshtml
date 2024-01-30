@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Store Project";
+}
+
+
+@* <img src="css/mirror.jpg" height="500" />*@
+@* 
+<article>
+    <h3>Store project</h3>
+    <p> <h4>Bienvenue sur notre site internet. </h4> </p>
+</article> *@
+
+<div class="display" style="display:flex">
+    <div>
+        <img src="~/css/JM.jpg" alt="bag" style="width: 50%;" />
+    </div>
+
+    <div >
+
+        <h4>
+            <a asp-controller="Produits" asp-action="ListeProduits" class="Lien">Catalog</a>
+            <br />
+
+        </h4>
+
+        <h4>
+            <a asp-controller="Produits" asp-action="ContactAdmin" class="Lien">Contact</a>
+            <br />
+
+        </h4>
+    </div>
+</div>

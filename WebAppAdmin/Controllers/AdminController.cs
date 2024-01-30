@@ -67,6 +67,38 @@ namespace WebAppAdmin.Controllers
 
             return RedirectToAction("ListeArticles");
         }
+        [HttpGet]
+        [Route("Articles/Nouveau")]
+        public ActionResult ArticleNouveau()
+        {
+            AdminService adminService = new AdminService();
+            List<Produit> produits = new List<Produit>();
+            produits = adminService.GetListeProduitService();
+
+            return View(produits);
+        }
+        [HttpPost]
+        [Route("Articles/Nouveau")]
+        public ActionResult ArticleNouveauSend()
+        {
+            //int IdUpdated = int.Parse(Request.Form["produitID"]);
+            string NomUpdated = Request.Form["produitNom"];
+            int PrixUpdated = int.Parse(Request.Form["produitPrix"]);
+            int QuantiteDisponibleUpdated = int.Parse(Request.Form["produitQuantiteDisponible"]);
+
+            Produit produitUpdated = new Produit();
+            //produitUpdated.ID = IdUpdated;
+            produitUpdated.Nom = NomUpdated;
+            produitUpdated.Prix = PrixUpdated;
+            produitUpdated.QuantiteDisponible = QuantiteDisponibleUpdated;
+
+
+            AdminService adminService = new AdminService();
+
+            adminService.CreateProduitService(produitUpdated);
+
+            return RedirectToAction("ListeArticles");
+        }
 
 
     }
