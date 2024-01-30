@@ -1,0 +1,57 @@
+﻿@using ModelsCommun
+@using WebAppAdmin.Views.Admin
+
+    @model List<Produit>
+
+<h3>
+    Liste des articles 
+
+</h3>
+<form asp-controller="Admin" asp-action="ArticleEditSend" method="post">
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Produit</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantité</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (var produit in Model)
+        {            
+            <tr>
+                @if (produit.ID == Convert.ToInt32(ViewContext.RouteData.Values["id"]))
+                {
+                    <td>
+                        <input class="form-control form-control-sm" type="text" name="produitID" placeholder="@produit.ID" readonly>
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="text" name="produitNom" placeholder="@produit.Nom">
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="text" name="produitPrix" placeholder="@produit.Prix">
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="text" name="produitQuantiteDisponible" placeholder="@produit.QuantiteDisponible">
+                    </td>
+                    
+                }
+                else
+                {
+                    <td>@produit.ID</td>
+                    <td>@produit.Nom</td>
+                    <td>@produit.Prix</td>
+                    <td>@produit.QuantiteDisponible</td>
+                }
+
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button type="submit" class="btn btn-primary" style="position: relative; bottom: 10px; left: 100%;">Confirmer</button>
+</form>
+
+              

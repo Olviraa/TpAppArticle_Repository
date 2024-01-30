@@ -1,4 +1,5 @@
 ﻿using ModelsCommun;
+using System.Text;
 using System.Text.Json;
 
 namespace WebAppAdmin.Repository
@@ -34,5 +35,27 @@ namespace WebAppAdmin.Repository
 
             return produits;
         }
+        public Produit UpdateProduit(Produit produit)
+        {
+            //prepa requete
+            var client = new HttpClient();
+            var urlUpdateProduit = _apiUrl + "api/Produit/update";
+
+            //serialisation des données en json 
+            var jsonUpdateProduit = JsonSerializer.Serialize(produit);
+            var content = new StringContent(jsonUpdateProduit, Encoding.UTF8, "application/json");
+
+            //appel api
+            var response = client.PostAsync(urlUpdateProduit, content).Result;
+
+            //test code retour
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception("Erreur lors de l'appel de l'Api");
+            }
+            
+            return produit;
+        }
+
     }
 }

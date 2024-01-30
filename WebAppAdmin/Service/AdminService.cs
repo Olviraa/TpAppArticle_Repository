@@ -13,5 +13,13 @@ namespace WebAppAdmin.Service
             
             return listeProduits;
         }
+        public Produit UpdateProduitService(Produit produitToUpdate)
+        {
+            //Produit produit = new Produit();
+            APIRepo apiRepo = new APIRepo();
+            //produit =
+                apiRepo.UpdateProduit(produitToUpdate);
+            return produitToUpdate;
+        }
     }
 }
