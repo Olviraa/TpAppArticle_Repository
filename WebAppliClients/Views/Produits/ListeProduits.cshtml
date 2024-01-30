@@ -22,8 +22,7 @@
                     <td>@produit.Prix</td>
                     <td>@produit.QuantiteDisponible</td>
                     <td>
-                         <a class="btn btn-primary" href="@Url.Action("Detail", new { id = produit.ID })">Détail</a> 
-                        <a asp-action="ProductDetail" asp-route-id="@produit.ID">Détail</a>
+                        <a asp-action="DetailProduit" asp-route-id="@produit.ID">Détail</a>
                     </td>
                 </tr>
             } 

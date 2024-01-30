@@ -8,11 +8,26 @@ namespace WebAppliClients.Models.ViewModels
 
     public class VentesViewModel
     {
-        public int ID { get; set; }
-     
-        //Id produit à envoyer à ma view
+        public List<ProduitVendu> ProduitsVendus { get; set; }
 
-        List<Produit> IdProduit = new List<Produit>();
+        public VentesViewModel(List<ProduitVendu> listProduit)
+        {
+            ProduitsVendus = listProduit;
+        }
+
+        public class ProduitVendu
+        {
+            public int ID { get; set; }
+            public int IdProduit { get; set; }
+            public int IdVente { get; set; }
+            public int Quantite { get; set; }
+        }
+
+        public class Produit
+        {
+            public int ID { get; set; }
+        }
 
     }
+
 }
