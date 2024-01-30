@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Font.Awesome" Version="5.15.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ModelsCommun\ModelsCommun.csproj" />
   </ItemGroup>
 

@@ -2,7 +2,7 @@
 @using WebAppAdmin.Views.Admin
 
     @model List<Produit>
-
+<a asp-controller="Admin" asp-action="AdminHome" class="btn btn-outline-dark" style="margin-bottom: 10px" title="Retour à l'accueil'">Back to home</a>
 <h3>
     Liste des articles    
     
@@ -14,18 +14,20 @@
             <th scope="col">Produit</th>
             <th scope="col">Prix</th>
             <th scope="col">Quantité</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
         @foreach (var produit in Model)
         {            
-            <tr onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">
-                <td>@produit.ID</td>
-                <td>@produit.Nom</td>
-                <td>@produit.Prix</td>
-                <td>@produit.QuantiteDisponible</td>
+            <tr>
+                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.ID</td>
+                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Nom</td>
+                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Prix</td>
+                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.QuantiteDisponible</td>
+                <td><button type="button" class="btn btn-labeled btn-danger btn-sm">❌</button></td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-dark" title="Ajouter nouveau produit">+Nouveau</a>
+<a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-dark" title="Ajouter nouveau produit">➕ Article</a>
