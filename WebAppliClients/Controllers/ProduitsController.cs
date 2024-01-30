@@ -39,11 +39,12 @@ namespace WebAppliClients.Controllers
             var produit = produitService.GetProduit(id);
             return View(produit);
         }
+
+        [HttpGet]
         [Route("Contact")]
         public IActionResult ContactAdmin()
         {
             return View();
         }
-
     }
 }
