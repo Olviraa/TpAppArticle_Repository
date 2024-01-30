@@ -21,5 +21,12 @@ namespace WebAppAdmin.Service
                 apiRepo.UpdateProduit(produitToUpdate);
             return produitToUpdate;
         }
+
+        internal Produit CreateProduitService(Produit produitCreated)
+        {
+            APIRepo aPIRepo = new APIRepo();
+            aPIRepo.CreateProduit(produitCreated);
+            return produitCreated;
+        }
     }
 }
