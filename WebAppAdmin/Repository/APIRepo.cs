@@ -57,5 +57,27 @@ namespace WebAppAdmin.Repository
             return produit;
         }
 
+        internal Produit CreateProduit(Produit produitCreated)
+        {
+            //prepa requete
+            var client = new HttpClient();
+            var urlCreateProduit = _apiUrl + "api/Produit/add";
+
+            //serialisation des données en json 
+            var jsonUpdateProduit = JsonSerializer.Serialize(produitCreated);
+            var content = new StringContent(jsonUpdateProduit, Encoding.UTF8, "application/json");
+
+            //appel api
+            var response = client.PostAsync(urlCreateProduit, content).Result;
+
+            //test code retour
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception("Erreur lors de l'appel de l'Api");
+            }
+
+            return produitCreated;
+
+        }
     }
 }
