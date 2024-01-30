@@ -9,7 +9,9 @@ namespace ApiVenteArticles.Repositories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=LAPTOP-4C4P6UI8\\SQLEXPRESS;Database=StoreProject;Trusted_Connection=True;TrustServerCertificate=True");
+
+            optionsBuilder.UseSqlServer("Server=DESKTOP-DTUC5BR\\SQLEXPRESS;Database=VenteProduit;Trusted_Connection=True;TrustServerCertificate=True");
+
         }
 
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)

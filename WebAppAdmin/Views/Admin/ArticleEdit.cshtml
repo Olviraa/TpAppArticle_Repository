@@ -2,7 +2,7 @@
 @using WebAppAdmin.Views.Admin
 
     @model List<Produit>
-
+<a asp-controller="Admin" asp-action="ListeArticles" class="btn btn-outline-dark" style="margin-bottom: 10px" title="Retour à l'accueil'">Back</a>
 <h3>
     Liste des articles 
 
@@ -14,7 +14,7 @@
             <th scope="col">ID</th>
             <th scope="col">Produit</th>
             <th scope="col">Prix</th>
-            <th scope="col">Quantité</th>
+                <th scope="col" width="10">Quantité</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -27,13 +27,17 @@
                         <input class="form-control form-control-sm" type="text" name="produitID" placeholder="@produit.ID" readonly>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm" type="text" name="produitNom" placeholder="@produit.Nom">
+                        <input class="form-control form-control-sm" type="text" name="produitNom" value="@produit.Nom">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm" type="text" name="produitPrix" placeholder="@produit.Prix">
+                        <input class="form-control form-control-sm" type="text" name="produitPrix" value="@produit.Prix">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm" type="text" name="produitQuantiteDisponible" placeholder="@produit.QuantiteDisponible">
+                        <input class="form-control form-control-sm" type="text" name="produitQuantiteDisponible" value="@produit.QuantiteDisponible"
+                               aria-describedby="Help">
+                        <small id="Help" class="form-text text-muted">
+                               Tout les champs doivent être remplis.
+                        </small>
                     </td>
                     
                 }
@@ -51,7 +55,7 @@
     </tbody>
 </table>
 
-<button type="submit" class="btn btn-primary" style="position: relative; bottom: 10px; left: 100%;">Confirmer</button>
+<button type="submit" class="btn btn-primary" style="position: relative; bottom: 1px; left: 92%">Confirmer</button>
 </form>
 
               
