@@ -1,16 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModelsCommun;
+using WebAppliClients.Services;
 
 namespace WebAppliClients.Controllers
 {
-    public class VentesController : Controller
+    
+    [Route("/")]
+    public class ProduitsVendusController : Controller
     {
     
-       [HttpPost("")]
-       public IActionResult AjoutProduit(ProduitVendu produitdPanier)
+       [HttpPost]
+       [Route("Panier")]
+       public IActionResult AddProduitPanier(ProduitVendu produitdPanier)
        {
-            //    //demande pour ajouter un produit au panier
-            //    var addToCartRequest = new 
+            //demande pour ajouter un produit au panier
+
+            ProduitService produitService = new ProduitService();
+            //var produit = produitService.
+
 
             //if (response.IsSuccessStatusCode)
             //{
