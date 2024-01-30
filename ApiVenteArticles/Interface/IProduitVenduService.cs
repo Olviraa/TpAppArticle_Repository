@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ModelsCommun;
 
 namespace ApiVenteArticles.Interface
@@ -12,5 +13,11 @@ namespace ApiVenteArticles.Interface
 
         public void DeleteProduct(int id);
 
+=======
+﻿namespace ApiVenteArticles.Interface
+{
+    public class IProduitVenteService
+    {
+>>>>>>> Stashed changes
     }
 }
