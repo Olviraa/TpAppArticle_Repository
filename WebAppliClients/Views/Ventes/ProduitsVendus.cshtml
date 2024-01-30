@@ -1,4 +1,4 @@
-﻿@* @model
+﻿@* @model ProduitVenduViewModel
 
 @using (Html.BeginForm("ValiderPanier", "Vente", FormMethod.Post))
 {
@@ -15,15 +15,15 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(model => model.Produits[i].idproduit)
-                        @Html.HiddenFor(model => model.Produits[i].idproduit)
+                        @Html.DisplayFor(model => model.Produits[i].IdProduit)
+                        @Html.HiddenFor(model => model.Produits[i].IdProduit)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Produits[i].idvente)
-                        @Html.HiddenFor(model => model.Produits[i].idvente)
+                        @Html.DisplayFor(model => model.Produits[i].IdVente)
+                        @Html.HiddenFor(model => model.Produits[i].IdVente)
                     </td>
                     <td>
-                        @Html.EditorFor(model => model.Produits[i].quantite)
+                        @Html.EditorFor(model => model.Produits[i].Quantite)
                     </td>
                 </tr>
             }
@@ -32,4 +32,4 @@
 
     <input type="submit" value="Valider Panier" />
 }
- *@
+ *@ *@

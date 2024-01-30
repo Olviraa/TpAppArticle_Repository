@@ -2,6 +2,7 @@
 using ModelsCommun;
 using System.Text;
 using System.Text.Json;
+using static WebAppliClients.Models.ViewModels.VentesViewModel;
 
 namespace WebAppliClients.Repository
 {
@@ -31,15 +32,15 @@ namespace WebAppliClients.Repository
             return produit;
         }
 
-        public ProduitVendu AddProduitVendu(ProduitVendu wishlist)
+        public ProduitVenduViewModel AddProduitVendu(ProduitVenduViewModel wishlist)
         {
-            string url = $"{_baseUrl}/produit/";
+            string url = $"{_baseUrl}/produit/add";
             HttpClient client = new HttpClient();
 
             Dictionary<string, string> formData = new Dictionary<string, string>();
-            formData["quantite"] = wishlist.QuantiteVendue.ToString(); //la quantite
-            formData["idevente"] = wishlist.ID.ToString();
-            formData["idproduit"] = wishlist.Produit.ID.ToString();
+            formData["quantite"] = wishlist.Quantite.ToString(); //la quantite
+            formData["idevente"] = wishlist.IdVente.ToString();
+            formData["idproduit"] = wishlist.IdProduit.ToString();
 
             FormUrlEncodedContent formContent = new FormUrlEncodedContent(formData);
 
@@ -50,6 +51,7 @@ namespace WebAppliClients.Repository
 
 
             // Appelez l'API pour ajouter au panier
+
 
             // Gérez la réponse ici selon les besoins
             return null;
