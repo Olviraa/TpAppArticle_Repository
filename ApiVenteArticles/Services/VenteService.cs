@@ -41,5 +41,16 @@ namespace ApiVenteArticles.Services
         }
 
 
+        public Vente UpdateVente(int id, DateTime date, double total)
+        {
+            Vente venteToUpdate = _dbContext.Ventes.FirstOrDefault(v => v.ID == id);
+            venteToUpdate.Total = total;
+            venteToUpdate.Date = date;
+
+            _dbContext.SaveChanges();
+
+            return venteToUpdate;
+        }
+
     }
 }

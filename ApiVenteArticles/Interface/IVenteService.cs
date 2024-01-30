@@ -11,5 +11,7 @@ namespace ApiVenteArticles.Interface
 
         public void DeleteVente(int id);
 
+        public Vente UpdateVente(int id, DateTime date, double total);
+
     }
 }

@@ -2,6 +2,7 @@
 using ApiVenteArticles.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ModelsCommun;
+using System.Diagnostics.Metrics;
 
 namespace ApiVenteArticles.Services
 {
@@ -28,7 +29,7 @@ namespace ApiVenteArticles.Services
 
         public ProduitVendu AddProduitVendre(int idvente, int idproduit, int quantite)
         {
-            
+         
             var mavente = _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(x => x.ID == idvente);
 
 
@@ -37,6 +38,7 @@ namespace ApiVenteArticles.Services
                 // Ma vente n'existe pas , je cree
                 mavente = new Vente();
                 _dbContext.Ventes.Add(mavente);
+                
             }
 
             //var listeproduits = mavente.ProduitsVendus.ToList();
@@ -63,6 +65,9 @@ namespace ApiVenteArticles.Services
 
                 //_dbContext.Ventes.Add(produitvendu);
                 mavente.ProduitsVendus.Add(produitvendu);
+                mavente.Total = 
+               
+
                 _dbContext.SaveChanges();
                 return produitvendu;
             } 

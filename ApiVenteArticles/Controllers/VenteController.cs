@@ -46,6 +46,15 @@ namespace ApiVenteArticles.Controllers
         }
 
         [HttpPost]
+        [Route("update")]
+        public Vente UpdateVente(Vente venteToUpdate)
+        {
+            var updatedVente = _venteService.UpdateVente(venteToUpdate.ID, venteToUpdate.Date, venteToUpdate.Total);
+            return updatedVente;
+
+        }
+
+        [HttpPost]
         [Route("delete")]
         public void DeleteVente(int id)
         {
