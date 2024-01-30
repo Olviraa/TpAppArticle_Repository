@@ -45,7 +45,7 @@ namespace ApiVenteArticles.Services
 
             var existedeja = mavente.ProduitsVendus.Any(p => p.Produit.ID == idproduit);
 
-
+            // si ajout du meme produit plusieurs fois dans le panier
             if (existedeja)
             {
                 var produitvendu = mavente.ProduitsVendus.First(p => p.Produit.ID == idproduit);

@@ -12,6 +12,9 @@ namespace ApiVenteArticles.Interface
         public ProduitVendu AddProduitVendre(int idvente, int idproduit, int quantite);
 
         public void DeleteProduct(int id);
+
     }
 
 }
+
+
