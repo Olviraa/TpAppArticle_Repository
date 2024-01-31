@@ -50,5 +50,28 @@ namespace WebAppliClients.Repository
 
             return addedProduitVendu;
         }
+
+        public List<ProduitVendu> GetListProduitVendu()
+        {
+            string url = $"{_baseUrl}/Panier";
+            HttpClient client = new HttpClient();
+            var response = client.GetAsync(url).Result;
+            var productJson = response.Content.ReadAsStringAsync().Result;
+            List<ProduitVendu> panier = JsonSerializer.Deserialize<List<ProduitVendu>>(productJson);
+
+            return panier;
+        }
+
+        public ProduitVendu GetProduitVendu(int id)
+        {
+            string url = $"{_baseUrl}/ProduitPanier/{id}";
+            HttpClient client = new HttpClient();
+            var response = client.GetAsync(url).Result;
+            var productJson = response.Content.ReadAsStringAsync().Result;
+            ProduitVendu produitPanier = JsonSerializer.Deserialize<ProduitVendu>(productJson);
+
+            return produitPanier;
+        }
+
     }
 }

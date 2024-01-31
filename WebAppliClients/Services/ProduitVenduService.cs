@@ -1,4 +1,5 @@
 ﻿
+using ModelsCommun;
 using WebAppliClients.Repository;
 using static WebAppliClients.Models.ViewModels.VentesViewModel;
 
@@ -26,5 +27,18 @@ namespace WebAppliClients.Services
 
             return addedProduitVenduViewModel;
         }
+
+        public List<ProduitVendu> GetListProduitVendu()
+        {
+            var listeProduitVendu = _apiRepository.GetListProduitVendu();
+            return listeProduitVendu;
+        }
+
+        public ProduitVendu GetProduitVendu(int id)
+        {
+            var produitVendu = _apiRepository.GetProduitVendu(id);
+            return produitVendu;
+        }
+
     }
 }

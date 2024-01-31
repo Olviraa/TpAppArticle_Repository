@@ -1,34 +1,32 @@
-﻿@* @using WebAppliClients.Models.ViewModel
+﻿@using ModelsCommun
+@using WebAppliClients.Models.ViewModels
+@model ListProduitVenduViewModel
 
-<script>
-    function ajouterAuPanier() {
-        var productId = @Html.Raw(Json.Serialize(Model.ID));
-        var productName = '@Html.Raw(Json.Serialize(Model.Nom))';
-        var productPrice = @Html.Raw(Json.Serialize(Model.Prix));
-        var maxQuantity = @Html.Raw(Json.Serialize(Model.QuantiteDisponible));
-        var selectedQuantity = document.getElementById('quantity').value;
+<div class="container mt-5">
+    <h2>Liste des Produits</h2>
+    <hr>
 
-        // Vérifiez si la quantité sélectionnée est valide
-        if (selectedQuantity <= 0 || selectedQuantity > maxQuantity) {
-            alert('Quantité non valide. Veuillez sélectionner une quantité entre 1 et ' + maxQuantity + '.');
-            return;
-        }
-
-        // Ajouter le produit dans le panier
-        var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-        var newItem = {
-            id: productId,
-            name: productName,
-            price: productPrice,
-            quantity: selectedQuantity
-        };
-
-        cartItems.push(newItem);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-        // Redirigez vers la liste des produits après avoir ajouté le produit au panier
-        window.location.href = '/list';
-    }
-    }
-</script> *@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité </th>
+                @*   <th>Action</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produitVendu in Model.ListProduitVendu)
+            {
+                <tr>
+                    <td>@produitVendu.Produit.Nom</td>
+                    <td>@produitVendu.Produit.Prix</td>
+                    <td>@produitVendu.Quantite</td>
+                    <td>
+                        <a asp-action="DetailProduitVendu" asp-route-id="@produitVendu.ID">Détail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModelsCommun;
 using WebAppliClients.Services;
+using WebAppliClients.Models.ViewModels;
 
 namespace WebAppliClients.Controllers
 {
@@ -19,6 +20,26 @@ namespace WebAppliClients.Controllers
 
             return View(produitVenduTosend);
        }
+
+
+        [HttpGet]
+        [Route("Panier")]
+        public IActionResult ProduitsVendus()
+        {
+            ProduitVenduService produitVenduService = new ProduitVenduService();
+            var produitsVendus = produitVenduService.GetListProduitVendu();
+            ListProduitVenduViewModel listproduitvenduVM = new ListProduitVenduViewModel(produitsVendus);
+            return View(listproduitvenduVM);
+        }
+        [HttpGet]
+        [Route("PanierDetail/{id}")]
+        public IActionResult DetailProduitVendu(int id)
+        {
+            ProduitVenduService produitService = new ProduitVenduService();
+            var produitVendu = produitService.GetProduitVendu(id);
+            return View(produitVendu);
+        }
+
 
     }
 }
