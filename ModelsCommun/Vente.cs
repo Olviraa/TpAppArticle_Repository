@@ -22,6 +22,7 @@ namespace ModelsCommun
         public double Total { get; set; }
 
         // Liste des produits vendus (pour permettre à EntityFramework de comprendre la logique de la vente)
+        [JsonPropertyName("produitsVendus")]
         public List<ProduitVendu> ProduitsVendus { get; set; }
 
     }
