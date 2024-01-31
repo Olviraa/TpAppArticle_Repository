@@ -35,12 +35,11 @@ namespace ApiVenteArticles.Services
         public void DeleteVente(int id)
         {
 
-            Vente venteToDelete = _dbContext.Ventes.FirstOrDefault(p => p.ID == id);
+            Vente venteToDelete = _dbContext.Ventes.Include(p => p.ProduitsVendus).FirstOrDefault(p => p.ID == id);   
             _dbContext.Ventes.Remove(venteToDelete);
-            _dbContext.SaveChanges();
+           _dbContext.SaveChanges();
 
         }
-
 
         public Vente UpdateVente(int id, DateTime date, double total)
         {

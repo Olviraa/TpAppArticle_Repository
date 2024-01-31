@@ -65,7 +65,6 @@ namespace ApiVenteArticles.Services
 
                 //_dbContext.Ventes.Add(produitvendu);
                 mavente.ProduitsVendus.Add(produitvendu);
-                
                
 
                 _dbContext.SaveChanges();
