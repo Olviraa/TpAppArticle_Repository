@@ -57,4 +57,40 @@
         // Redirigez vers la liste des produits après avoir ajouté le produit au panier
         window.location.href = '/list';
     }
+}
+</script>
+
+<script>
+    function addToCart() {
+        var productId = @Html.Raw(Json.Serialize(Model.ID));
+        var productName = '@Html.Raw(Json.Serialize(Model.Nom))';
+        var productPrice = @Html.Raw(Json.Serialize(Model.Prix));
+        var maxQuantity = @Html.Raw(Json.Serialize(Model.QuantiteDisponible));
+        var selectedQuantity = document.getElementById('quantity').value;
+
+        // Vérification si la quantité sélectionnée est valide
+        if (selectedQuantity <= 0 || selectedQuantity > maxQuantity) {
+            alert('Quantité non valide. Veuillez sélectionner une quantité entre 1 et ' + maxQuantity + '.');
+            return;
+        }
+
+        // ajout de la logique pour ajouter le produit à la liste ici
+
+
+        // utiliser une variable JavaScript pour stocker la liste???? I DON'T KNOW HOW TO DO THAT**
+        var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        var newItem = {
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: selectedQuantity
+        };
+
+        cartItems.push(newItem);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        // Redirection vers la liste des produits après avoir ajouté le produit au panier
+        window.location.href = '/produits';
+    }
 </script>

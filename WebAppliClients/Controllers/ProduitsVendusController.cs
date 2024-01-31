@@ -11,25 +11,13 @@ namespace WebAppliClients.Controllers
     
        [HttpPost]
        [Route("Panier")]
-       public IActionResult AddProduitPanier(ProduitVendu produitdPanier)
+       public IActionResult AddProduitPanier(int IdProduit, int IdVente, int Quantite)
        {
-            //demande pour ajouter un produit au panier
+            // RECEPTION DU produitVendu DU PRODUITVENDUSERVICE
+            ProduitVenduService produitVenduReçu = new ProduitVenduService();
+            var produitVenduTosend = produitVenduReçu.AddProduitPanier(IdProduit, IdVente, Quantite);
 
-            ProduitService produitService = new ProduitService();
-            //var produit = produitService.
-
-
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    // Ajout réussi au panier
-            //    TempData["Message"] = "Produit ajouté au panier avec succès.";
-            //}
-            //else
-            //{
-            //    // Gestion des erreurs
-            //    TempData["Message"] = "Erreur lors de l'ajout au panier.";
-            //}
-            return View();
+            return View(produitVenduTosend);
        }
 
     }
