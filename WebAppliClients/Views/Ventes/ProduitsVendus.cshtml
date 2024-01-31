@@ -1,1 +1,33 @@
-﻿
+@using ModelsCommun
+@using WebAppliClients.Models.ViewModels
+@model ListProduitVenduViewModel
+
+<div class="container mt-5">
+    <h2>Liste des Produits</h2>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité </th>
+                @*   <th>Action</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produitVendu in Model.ListProduitVendu)
+            {
+                <tr>
+                    <td>@produitVendu.Produit.Nom</td>
+                    <td>@produitVendu.Produit.Prix</td>
+                    <td>@produitVendu.Quantite</td>
+                    <td>
+                        <a asp-action="DetailProduitVendu" asp-route-id="@produitVendu.ID">Détail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
