@@ -8,7 +8,8 @@ namespace WebAppliClients.Services
     public class ProduitVenduService
     {
         private readonly AppelApiRepository _apiRepository;
-        // services pour api
+
+        // service pour controllerproduitvendu  
         public ProduitVenduViewModel AddProduitPanier(int IdProduit, int IdVente, int Quantite)
         {
             ProduitVenduViewModel produitVendu = new ProduitVenduViewModel();
@@ -16,10 +17,14 @@ namespace WebAppliClients.Services
             produitVendu.IdProduit = IdProduit;
             produitVendu.IdVente = IdVente;
             produitVendu.Quantite = Quantite;
-            _apiRepository.AddProduitVendu(produitVendu);
+            var addedProduitVendu =_apiRepository.AddProduitVendu(produitVendu);
 
-            return produitVendu;
+            ProduitVenduViewModel addedProduitVenduViewModel = new ProduitVenduViewModel();
+            addedProduitVenduViewModel.IdProduit = addedProduitVendu.Produit.ID;
+            addedProduitVenduViewModel.IdVente = addedProduitVendu.ID;
+            addedProduitVenduViewModel.Quantite = addedProduitVendu.QuantiteVendue;
 
+            return addedProduitVenduViewModel;
         }
     }
 }

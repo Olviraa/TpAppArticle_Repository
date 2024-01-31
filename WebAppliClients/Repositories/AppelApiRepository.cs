@@ -32,29 +32,23 @@ namespace WebAppliClients.Repository
             return produit;
         }
 
-        public ProduitVenduViewModel AddProduitVendu(ProduitVenduViewModel wishlist)
+        public ProduitVendu AddProduitVendu(ProduitVenduViewModel wishlist)
         {
             string url = $"{_baseUrl}/produit/add";
             HttpClient client = new HttpClient();
 
             Dictionary<string, string> formData = new Dictionary<string, string>();
-            formData["quantite"] = wishlist.Quantite.ToString(); //la quantite
+            formData["quantite"] = wishlist.Quantite.ToString();
             formData["idevente"] = wishlist.IdVente.ToString();
             formData["idproduit"] = wishlist.IdProduit.ToString();
 
             FormUrlEncodedContent formContent = new FormUrlEncodedContent(formData);
 
-            var productJson = JsonSerializer.Serialize(wishlist);
-            var produitPanier = new StringContent(productJson, Encoding.UTF8, "application/json");
-
             var response = client.PostAsync(url, formContent).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+            var addedProduitVendu = JsonSerializer.Deserialize<ProduitVendu>(json);
 
-
-            // Appelez l'API pour ajouter au panier
-
-
-            // Gérez la réponse ici selon les besoins
-            return null;
+            return addedProduitVendu;
         }
     }
 }
