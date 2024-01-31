@@ -2,7 +2,7 @@
 @using WebAppAdmin.Views.Admin
 
     @model List<Produit>
-<a asp-controller="Admin" asp-action="AdminHome" class="btn btn-outline-dark" style="margin-bottom: 10px" title="Retour à l'accueil'">Back to home</a>
+<a asp-controller="Admin" asp-action="AdminHome" class="btn btn-outline-dark" style="margin-bottom: 10px" title="Retour à l'accueil">Back to home</a>
 <h3>
     Liste des articles    
     
@@ -14,7 +14,7 @@
             <th scope="col">Produit</th>
             <th scope="col">Prix</th>
             <th scope="col">Quantité</th>
-            <th scope="col">Action</th>
+            <th scope="col" width="15" style="text-align: center">Action</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -23,11 +23,11 @@
             <tr>
                 <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.ID</td>
                 <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Nom</td>
-                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Prix</td>
+                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Prix €</td>
                 <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.QuantiteDisponible</td>
-                <td><button type="button" class="btn btn-labeled btn-danger btn-sm">❌</button></td>
+                <td style="text-align: center"><a asp-controller="Admin" asp-action="ArticleSuppression" asp-route-id="@produit.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer article" width="15">❌</a></td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-dark" title="Ajouter nouveau produit">➕ Article</a>
+<a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-success" title="Ajouter nouveau produit">➕ Article</a>

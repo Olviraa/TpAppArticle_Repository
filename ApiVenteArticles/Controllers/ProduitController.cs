@@ -54,7 +54,7 @@ namespace ApiVenteArticles.Controllers
         }
 
         [HttpPost]
-        [Route("delete")]
+        [Route("delete/{id}")]
         public void DeleteProduct(int id)
         {
              _produitService.DeleteProduct(id);

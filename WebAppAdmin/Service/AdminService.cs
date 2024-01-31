@@ -28,5 +28,12 @@ namespace WebAppAdmin.Service
             aPIRepo.CreateProduit(produitCreated);
             return produitCreated;
         }
+
+        internal int DeleteProduitService(int IdDeleted)
+        {
+            APIRepo apiRepo = new APIRepo();
+            apiRepo.DeleteProduit(IdDeleted);
+            return IdDeleted;
+        }
     }
 }
