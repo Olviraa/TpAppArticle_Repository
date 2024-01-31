@@ -58,6 +58,8 @@ namespace ApiVenteArticles.Controllers
         [Route("delete")]
         public void DeleteVente(int id)
         {
+
+
             _venteService.DeleteVente(id);
 
         }

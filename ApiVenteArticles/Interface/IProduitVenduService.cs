@@ -14,7 +14,6 @@ namespace ApiVenteArticles.Interface
         public void DeleteProduct(int id);
 
     }
-
 }
 
 
