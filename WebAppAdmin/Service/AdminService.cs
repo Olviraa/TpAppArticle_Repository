@@ -29,11 +29,27 @@ namespace WebAppAdmin.Service
             return produitCreated;
         }
 
-        internal int DeleteProduitService(int IdDeleted)
+        internal int DeleteProduitService(int idDeleted)
         {
             APIRepo apiRepo = new APIRepo();
-            apiRepo.DeleteProduit(IdDeleted);
-            return IdDeleted;
+            apiRepo.DeleteProduit(idDeleted);
+            return idDeleted;
+        }
+
+        internal int DeleteVenteService(int idDeleted)
+        {
+            APIRepo apiRepo = new APIRepo();
+            apiRepo.DeleteVente(idDeleted);
+            return idDeleted;
+        }
+
+        internal List<Vente> GetHistoriqueService()
+        {
+            List<Vente> listeVentes = new List<Vente>();
+            APIRepo apiRepo = new APIRepo();
+            listeVentes = apiRepo.GetHistorique();
+
+            return listeVentes;
         }
     }
 }

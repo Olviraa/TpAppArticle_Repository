@@ -16,13 +16,7 @@ namespace WebAppAdmin.Controllers
         {
             return View();
         }
-
-        //[Route("Admin")]
-        //public ActionResult AdminHome()
-        //{
-        //    return View();
-        //}
-
+             
         [HttpGet]
         [Route("Articles")]
         public ActionResult ListeArticles()
@@ -32,6 +26,17 @@ namespace WebAppAdmin.Controllers
             produits = adminService.GetListeProduitService();
             
             return View(produits);
+        }
+
+        [HttpGet]
+        [Route("Historique")]
+        public ActionResult Historique()
+        {
+            AdminService adminService = new AdminService();
+            List<Vente> ventes = new List<Vente>();
+            ventes = adminService.GetHistoriqueService();
+
+            return View(ventes);
         }
 
         [HttpGet] //post,?
@@ -72,13 +77,26 @@ namespace WebAppAdmin.Controllers
         [Route("Article/{id}")]
         public ActionResult ArticleSuppression(int id)
         {
-            int IdDeleted = id; // check ici pour fuck up            
+            int IdDeleted = id;             
             
             AdminService adminService = new AdminService();
 
             adminService.DeleteProduitService(IdDeleted);
 
             return RedirectToAction("ListeArticles");
+        }
+        
+        [HttpGet]
+        [Route("Vente/{id}")]
+        public ActionResult VenteSuppression(int id)
+        {
+            int IdDeleted = id;             
+
+            AdminService adminService = new AdminService();
+
+            adminService.DeleteVenteService(IdDeleted);
+
+            return RedirectToAction("Historique");
         }
 
         [HttpGet]
