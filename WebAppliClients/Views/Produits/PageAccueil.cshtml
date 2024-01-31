@@ -12,21 +12,25 @@
 
 <div class="display" style="display:flex">
     <div>
-        <img src="~/css/JM.jpg" alt="bag" style="width: 50%;" />
+        <img src="~/css/JM.jpg" width="500px" />
     </div>
 
     <div >
+        <p>
+            <blockquote>
+                <h4>
+                    <a asp-controller="Produits" asp-action="ListeProduits" class="Lien" position="right">Catalog</a>
+                    <br />
 
-        <h4>
-            <a asp-controller="Produits" asp-action="ListeProduits" class="Lien">Catalog</a>
-            <br />
+                </h4>
 
-        </h4>
+                <h4>
+                    <a asp-controller="Produits" asp-action="ContactAdmin" class="Lien">Contacts</a>
+                    <br />
 
-        <h4>
-            <a asp-controller="Produits" asp-action="ContactAdmin" class="Lien">Contact</a>
-            <br />
-
-        </h4>
+                </h4>
+            </blockquote>
+        </p>
+        
     </div>
 </div>
