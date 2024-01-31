@@ -16,8 +16,10 @@ namespace WebAppliClients.Controllers
        {
             // RECEPTION DU produitVendu DU PRODUITVENDUSERVICE
 
+            int QuantiteDispo = int.Parse(Request.Form["QuantiteDisponible"]);
+
             ProduitVenduService produitVenduReçu = new ProduitVenduService();
-            var produitVenduTosend = produitVenduReçu.AddProduitPanier(IdProduit, IdVente, Quantite);
+            var produitVenduTosend = produitVenduReçu.AddProduitPanier(IdProduit, IdVente, QuantiteDispo) ;
 
             return View(produitVenduTosend);
        }
