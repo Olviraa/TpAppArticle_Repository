@@ -3,12 +3,14 @@ using ModelsCommun;
 using System.Text;
 using System.Text.Json;
 using static WebAppliClients.Models.ViewModels.VentesViewModel;
+using static WebAppliClients.Models.ViewModels.ListProduitVenduViewModel;
 
 namespace WebAppliClients.Repository
 {
     public class AppelApiRepository
     {
         private string _baseUrl = "http://localhost:5101/api";
+        //private string _baseUrl = "http://localhost:5282/api";
 
         public List<Produit> GetList()
         {
