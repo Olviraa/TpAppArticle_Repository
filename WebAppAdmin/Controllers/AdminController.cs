@@ -30,8 +30,7 @@ namespace WebAppAdmin.Controllers
             AdminService adminService = new AdminService();
             List<Produit> produits = new List<Produit>();
             produits = adminService.GetListeProduitService();
-            //MyViewModel model = new MyViewModel();
-            //model = produits;
+            
             return View(produits);
         }
 
@@ -45,6 +44,7 @@ namespace WebAppAdmin.Controllers
            
             return View(produits);
         }
+
         [HttpPost]
         [Route("Articles/{id}")]
         public ActionResult ArticleEditSend(int id)
@@ -67,6 +67,20 @@ namespace WebAppAdmin.Controllers
 
             return RedirectToAction("ListeArticles");
         }
+
+        [HttpGet]
+        [Route("Article/{id}")]
+        public ActionResult ArticleSuppression(int id)
+        {
+            int IdDeleted = id; // check ici pour fuck up            
+            
+            AdminService adminService = new AdminService();
+
+            adminService.DeleteProduitService(IdDeleted);
+
+            return RedirectToAction("ListeArticles");
+        }
+
         [HttpGet]
         [Route("Articles/Nouveau")]
         public ActionResult ArticleNouveau()

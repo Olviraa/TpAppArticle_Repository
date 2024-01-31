@@ -79,5 +79,25 @@ namespace WebAppAdmin.Repository
             return produitCreated;
 
         }
+
+        internal int DeleteProduit(int idDeleted)
+        {
+            //prepa requete
+            var client = new HttpClient();
+            var urlDeleteProduit = _apiUrl + "api/Produit/delete/" + idDeleted;
+                        
+            //appel api
+            var response = client.PostAsync(urlDeleteProduit, null).Result;
+
+            //test code retour
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception("Erreur lors de l'appel de l'Api");
+            }
+
+            return idDeleted;
+
+
+        }
     }
 }
