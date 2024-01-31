@@ -22,11 +22,58 @@
     <form id="addToCartForm">
         <label for="quantity">Quantité:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="@Model.QuantiteDisponible" value="1">
-
-        <button type="button" class="btn btn-primary" onclick="ajouterAuPanier()">Ajouter au Panier</button>
+       @*  liaison entre la quantité dispo et la quantité de produit mis dans le panier *@
+        <button type="submit" class="btn btn-primary" onclick="ajouterAuPanier()">Ajouter au Panier</button>
     </form>
 </div>
+@* 
+<script>
+    function ajouterAuPanier(productId, productName, productPrice, maxQuantity) {
+        var selectedQuantity = parseInt(document.getElementById('quantity_' + productId).value);
 
+        if (selectedQuantity <= 0 || selectedQuantity > maxQuantity) {
+            alert('Quantité invalide. Veuillez sélectionner une quantité valide.');
+            return;
+        }
+
+        var produit = {
+            Id: productId,
+            Nom: productName,
+            Prix: productPrice,
+            Quantite: selectedQuantity
+        };
+
+        var panier = JSON.parse(localStorage.getItem('panier')) || [];
+        panier.push(produit);
+        localStorage.setItem('panier', JSON.stringify(panier));
+
+        afficherPanier();
+    }
+
+    function afficherPanier() {
+        var panier = JSON.parse(localStorage.getItem('panier')) || [];
+        var panierListElement = document.getElementById('panierList');
+        panierListElement.innerHTML = '';
+
+        panier.foreach(function (produit) {
+            var listItem = document.createElement('li');
+            listItem.textContent = produit.Nom + ' - Quantité: ' + produit.Quantite + ' - Prix unitaire: ' + produit.Prix;
+            panierListElement.appendChild(listItem);
+        });
+    }
+
+    // Initialiser l'affichage du panier lors du chargement de la page
+    afficherPanier();
+</script>
+
+ *@
+
+
+
+
+
+
+@* 
 <script>
     function ajouterAuPanier() {
         var productId = @Html.Raw(Json.Serialize(Model.ID));
@@ -77,6 +124,7 @@
         // ajout de la logique pour ajouter le produit à la liste ici
 
 
+
         // utiliser une variable JavaScript pour stocker la liste???? I DON'T KNOW HOW TO DO THAT**
         var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
@@ -93,4 +141,6 @@
         // Redirection vers la liste des produits après avoir ajouté le produit au panier
         window.location.href = '/produits';
     }
+
 </script>
+ *@
