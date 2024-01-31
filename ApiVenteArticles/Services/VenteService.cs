@@ -1,5 +1,6 @@
 ﻿using ApiVenteArticles.Interface;
 using ApiVenteArticles.Repositories;
+using Microsoft.EntityFrameworkCore;
 using ModelsCommun;
 
 namespace ApiVenteArticles.Services
@@ -23,12 +24,12 @@ namespace ApiVenteArticles.Services
 
         public List<Vente> GetVentes()
         {
-            return _dbContext.Ventes.ToList();
+            return _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).ToList();
         }
 
         public Vente GetVente(int id)
         {
-            return _dbContext.Ventes.FirstOrDefault(p => p.ID == id);
+            return _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(p => p.ID == id);
         }
 
         public void DeleteVente(int id)
