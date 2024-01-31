@@ -99,5 +99,46 @@ namespace WebAppAdmin.Repository
 
 
         }
+
+        internal int DeleteVente(int idDeleted)
+        {
+            //prepa requete
+            var client = new HttpClient();
+            var urlDeleteVente = _apiUrl + "api/Vente/delete/" + idDeleted;
+
+            //appel api
+            var response = client.PostAsync(urlDeleteVente, null).Result;
+
+            //test code retour
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception("Erreur lors de l'appel de l'Api");
+            }
+
+            return idDeleted;
+        }
+
+        internal List<Vente> GetHistorique()
+        {
+            //prepa requete
+            var client = new HttpClient();
+            var urlGetVentes = _apiUrl + "api/Vente";
+
+            //appel api
+            var response = client.GetAsync(urlGetVentes).Result;
+
+            //test code retour
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception("Erreur lors de l'appel de l'Api");
+            }
+
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            //déserialisation des données en json 
+            List<Vente> ventes = JsonSerializer.Deserialize<List<Vente>>(json);
+
+            return ventes;
+        }
     }
 }

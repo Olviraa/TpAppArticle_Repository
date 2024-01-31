@@ -1,0 +1,34 @@
+﻿@using ModelsCommun
+@using WebAppAdmin.Views.Admin
+
+    @model List<Vente>
+<a asp-controller="Admin" asp-action="AdminHome" class="btn btn-outline-dark" style="margin-bottom: 10px" title="Retour à l'accueil">Back to home</a>
+<h3>
+    Historique des ventes
+
+</h3>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Articles</th>
+            <th scope="col">Total</th>
+            <th scope="col" width="15" style="text-align: center">Action</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (var vente in Model)
+        {
+            <tr>
+                <td>@vente.ID</td>
+                <td>@vente.Date</td>
+                <td>@vente.ProduitsVendus</td>
+                <td>@vente.Total €</td>
+                <td style="text-align: center"><a asp-controller="Admin" asp-action="VenteSuppression" asp-route-id="@vente.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer vente de l'historique'" width="15">❌</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@* <a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-success" title="Ajouter nouveau produit">➕ Article</a>
+ *@
