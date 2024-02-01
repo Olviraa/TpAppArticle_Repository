@@ -22,21 +22,23 @@ namespace WebAppliClients.Controllers
         {
             return View();
         }
+
         [HttpGet]
-        [Route("List")]
-        public IActionResult ListeProduits()
+        [Route("List/{venteId}")]
+        public IActionResult ListeProduits(int venteId)
         {
             ProduitService produitService = new ProduitService();
-            var produits = produitService.GetProduit();
-            ListViewModel listViewModel = new ListViewModel(produits);
+            var listViewModel = produitService.GetProduitView();
+            listViewModel.IdVente = venteId;
             return View(listViewModel);
         }
         [HttpGet]
-        [Route("Detail/{id}")]
-        public IActionResult DetailProduit(int id)
+        [Route("Detail/{venteId}/{id}")]
+        public IActionResult DetailProduit(int venteId, int id)
         {
             ProduitService produitService = new ProduitService();
             var produit = produitService.GetProduit(id);
+            produit.IdVente = venteId;
             return View(produit);
         }
 

@@ -15,9 +15,12 @@ namespace ApiVenteArticles.Services
             _dbContext = dbContext;
         }
 
-        public List<ProduitVendu> GetProductsVendre()
+        public List<ProduitVendu> GetProductsVendre(int idVente)
         {
-            return _dbContext.ProduitsVendus.Include(p => p.Produit).ToList();
+            var mavente = _dbContext.Ventes.Include(v => v.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(v => v.ID == idVente);
+            var listeProduitsVendus = mavente.ProduitsVendus.ToList();
+
+            return listeProduitsVendus;
         }
 
         public ProduitVendu GetProductVendre(int id)
@@ -27,7 +30,7 @@ namespace ApiVenteArticles.Services
         }
 
 
-        public ProduitVendu AddProduitVendre(int idvente, int idproduit, int quantite)
+        public int AddProduitVendre(int idvente, int idproduit, int quantite)
         {
          
             var mavente = _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(x => x.ID == idvente);
@@ -35,8 +38,11 @@ namespace ApiVenteArticles.Services
 
             if (mavente == null)
             {
-                // Ma vente n'existe pas , je cree
+                // Ma vente n'existe pas , je crée
                 mavente = new Vente();
+                mavente.Date = DateTime.Now;
+                mavente.Total = 0; 
+                mavente.ProduitsVendus = new List<ProduitVendu>();
                 _dbContext.Ventes.Add(mavente);
                 
             }
@@ -52,7 +58,7 @@ namespace ApiVenteArticles.Services
                 // On va rajouter la quatite de ce produit
                 produitvendu.QuantiteVendue += quantite;
                 _dbContext.SaveChanges();
-                return produitvendu;
+                return mavente.ID;
             }
             else
             {
@@ -68,20 +74,33 @@ namespace ApiVenteArticles.Services
                
 
                 _dbContext.SaveChanges();
-                return produitvendu;
+                return mavente.ID;
             } 
         }
 
-        public void DeleteProduct(int id)
+        // Fonction pour rétirer un produit dans le Panier
+        public bool DeleteProduitVendu(int idVente, int idProduit)
         {
+            var maVente = _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(x => x.ID == idVente);
 
-            ProduitVendu productToDelete = _dbContext.ProduitsVendus.FirstOrDefault(pv => pv.ID == id);
+            if (maVente != null)
+            {
+                // Trouver le ProduitVendu dans la liste
+                var produitVendu = maVente.ProduitsVendus.FirstOrDefault(pv => pv.Produit.ID == idProduit);
 
-            _dbContext.ProduitsVendus.Remove(productToDelete);
-            _dbContext.SaveChanges();
+                if (produitVendu != null)
+                {
+                    // Retirer le ProduitVendu de la liste
+                    maVente.ProduitsVendus.Remove(produitVendu);
 
+                    // Enregistrez les modifications dans la base de données
+                    _dbContext.SaveChanges();
 
+                    return true;
+                }
+            }
 
+            return false;
         }
 
     }

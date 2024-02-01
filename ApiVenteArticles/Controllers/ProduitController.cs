@@ -4,6 +4,7 @@ using ApiVenteArticles.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelsCommun;
+using WebAppliClients.Models.ViewModel;
 
 namespace ApiVenteArticles.Controllers
 {
@@ -29,11 +30,29 @@ namespace ApiVenteArticles.Controllers
         }
 
         [HttpGet]
+        [Route("List")]
+        public ListViewModel GetProductsList()
+        {
+            var indexViewModel = _produitService.GetProductsView();
+
+            return indexViewModel;
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public Produit GetProduct(int id)
         {
             var product = _produitService.GetProduct(id);
             return product;
+        }
+
+        [HttpGet]
+        [Route("view/{id}")]
+        public ProduitViewModel GetProductView(int idVente, int id)
+        {
+            var produitViewModel = _produitService.GetProductView(idVente, id);
+
+            return produitViewModel;
         }
 
         [HttpPost]

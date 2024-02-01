@@ -19,10 +19,10 @@ namespace ApiVenteArticles.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public List<ProduitVendu> GetProductsVendus()
+        [Route("{idVente}")]
+        public List<ProduitVendu> GetProductsVendus(int idVente)
         {
-            var productsVendus = _produitVenduService.GetProductsVendre();
+            var productsVendus = _produitVenduService.GetProductsVendre(idVente);
             return productsVendus;
         }
 
@@ -35,25 +35,19 @@ namespace ApiVenteArticles.Controllers
         }
 
         [HttpPost]
-        [Route("add")]
-        public ProduitVendu AddProduitVendu()
+        [Route("add/{idVente}/{idProduit}/{quantite}")]
+        public int AddProduitVendu(int idVente, int idProduit, int quantite)
         {
-            var quantite = Request.Form["quantite"];
-            var idvente = Request.Form["idvente"];
-            var idproduit = Request.Form["idprodui"];
-
-            var addedProduitVendu = _produitVenduService.AddProduitVendre(int.Parse(quantite), int.Parse(idvente), int.Parse(idproduit));
-            
-            return addedProduitVendu;
+            return _produitVenduService.AddProduitVendre(idVente, idProduit, quantite);
         }
 
        
 
         [HttpPost]
-        [Route("delete")]
-        public void DeleteProduitVendu(int idproduit)
+        [Route("delete/{idVente}/{idProduit}")]
+        public bool DeleteProduitVendu(int idVente, int idProduit)
         {
-            _produitVenduService.DeleteProduct(idproduit);
+            return _produitVenduService.DeleteProduitVendu(idVente, idProduit);
            
         }
 

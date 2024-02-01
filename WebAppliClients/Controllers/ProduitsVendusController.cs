@@ -12,24 +12,25 @@ namespace WebAppliClients.Controllers
     
        [HttpPost]
        [Route("Panier")]
-       public IActionResult AddProduitPanier(int IdProduit, int IdVente, int Quantite)
+       public IActionResult AddProduitPanier(int venteId, int produitId, int quantity)
        {
             // CREATION DE LA VENTE
 
-                ProduitVenduService produitVenduCrée = new ProduitVenduService();
-                 produitVenduCrée.CreatPanier();
+                //ProduitVenduService produitVenduCrée = new ProduitVenduService();
+                // produitVenduCrée.CreatPanier();
 
             // RECEPTION DU produitVendu DU PRODUITVENDUSERVICE
 
-            int QuantiteDispo = int.Parse(Request.Form["QuantiteDisponible"]);
+            //int QuantiteDispo = int.Parse(Request.Form["QuantiteDisponible"]);
             
 
             ProduitVenduService produitVenduReçu = new ProduitVenduService();
-            var produitVenduTosend = produitVenduReçu.AddProduitPanier(IdProduit, IdVente, QuantiteDispo) ;
+            var IdDeLaVente = produitVenduReçu.AddProduitPanier(venteId, produitId, quantity) ;
 
             //return View(produitVenduTosend);
-            return RedirectToAction("List","Produit");
+            return RedirectToAction("ListeProduits", "Produits", new { venteId = IdDeLaVente });
        }
+
         [HttpPost]
         [Route("")]
         public IActionResult ProduitAupDateDuPanier()
@@ -39,12 +40,12 @@ namespace WebAppliClients.Controllers
         }
 
         [HttpGet]
-        [Route("PanierList")]
-        public IActionResult ProduitsVendus()
+        [Route("PanierList/{id}")]
+        public IActionResult ProduitsVendus(int id)
         {
             ProduitVenduService produitVenduService = new ProduitVenduService();
-            var produitsVendus = produitVenduService.GetListProduitVendu();          
-            return View(produitsVendus);
+            var ventePanier = produitVenduService.GetListProduitVendu(id);          
+            return View(ventePanier);
         }
         [HttpGet]
         [Route("Panier/{id}")]
