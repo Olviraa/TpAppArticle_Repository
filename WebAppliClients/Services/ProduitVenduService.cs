@@ -45,10 +45,5 @@ namespace WebAppliClients.Services
             return produitVendu;
         }
 
-        public Vente CreatPanier()
-        {
-            var creatPanier = _apiRepository.PanierAremplir();
-            return creatPanier;
-        }
     }
 }

@@ -75,9 +75,5 @@ namespace WebAppliClients.Repository
             return produitVendu;
         }
 
-        internal Vente PanierAremplir()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
