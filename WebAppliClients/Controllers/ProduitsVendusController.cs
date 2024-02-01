@@ -26,16 +26,15 @@ namespace WebAppliClients.Controllers
 
 
         [HttpGet]
-        [Route("Panier")]
+        [Route("PanierList")]
         public IActionResult ProduitsVendus()
         {
             ProduitVenduService produitVenduService = new ProduitVenduService();
-            var produitsVendus = produitVenduService.GetListProduitVendu();
-            ListProduitVenduViewModel listproduitvenduVM = new ListProduitVenduViewModel(produitsVendus);
-            return View(listproduitvenduVM);
+            var produitsVendus = produitVenduService.GetListProduitVendu();          
+            return View(produitsVendus);
         }
         [HttpGet]
-        [Route("PanierDetail/{id}")]
+        [Route("Panier/{id}")]
         public IActionResult DetailProduitVendu(int id)
         {
             ProduitVenduService produitService = new ProduitVenduService();

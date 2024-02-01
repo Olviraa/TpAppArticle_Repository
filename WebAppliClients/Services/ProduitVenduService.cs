@@ -10,6 +10,11 @@ namespace WebAppliClients.Services
     {
         private readonly AppelApiRepository _apiRepository;
 
+        public ProduitVenduService()
+        {
+            _apiRepository = new AppelApiRepository();
+        }
+
         // service pour controllerproduitvendu  
         public ProduitVenduViewModel AddProduitPanier(int IdProduit, int IdVente, int Quantite)
         {
