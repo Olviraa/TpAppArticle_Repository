@@ -24,7 +24,7 @@
                     
                         <td>@produit.ID</td>
                         <td>@produit.Nom</td>
-                        <td>@produit.Prix</td>
+                        <td>@produit.Prix <i class="fa-solid fa-euro-sign"></i></td>
                         <td>@produit.QuantiteDisponible</td>
                     
 
@@ -39,16 +39,19 @@
                     <input class="form-control form-control-sm" type="text" name="produitNom" placeholder="Nom">
                 </td>
                 <td>
-                    <input class="form-control form-control-sm" type="text" name="produitPrix" placeholder="Prix">
+                    <input class="form-control form-control-sm" type="text" name="produitPrix" placeholder="Prix €">
                 </td>
                 <td>
-                    <input class="form-control form-control-sm" type="text" name="produitQuantiteDisponible" placeholder="Quantite Disponible">
+                    <input class="form-control form-control-sm" type="text" name="produitQuantiteDisponible" placeholder="Quantite Disponible" aria-describedby="Help">
+                    <small id="Help" class="form-text text-muted">
+                        Tout les champs doivent être remplis.
+                    </small>
                 </td>
         </tr>
         
         </tbody>
     </table>
 
-    <button type="submit" class="btn btn-primary" style="position: relative; bottom: 10px; left: 92%;">Confirmer</button>
+    <button type="submit" class="btn btn-primary" style="position: relative; bottom: 10px; left: 90%;"><i class="fa-solid fa-circle-check fa-xl"></i>  Confirmer</button>
 </form>
 

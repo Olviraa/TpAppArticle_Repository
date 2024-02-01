@@ -24,51 +24,83 @@
                 <td>@vente.ID</td>
                 <td>@vente.Date</td>
                 <td>
-                    <select onchange="displayProductDetails(this)">
-                        <option value="">Voir Liste Produit(s)</option>
-                        @foreach (var produitvendu in vente.ProduitsVendus)
-                        {
-                            <option value="@produitvendu.Produit.Nom">@produitvendu.Produit.Nom</option>                          
-                        }
-                    </select>                    
+                    <button class="btn btn-outline-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="displayProductDetails(@vente.ID)">Show Details</button>
                 </td>
-                <td>@vente.Total €</td>
-                <td style="text-align: center"><a asp-controller="Admin" asp-action="VenteSuppression" asp-route-id="@vente.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer vente de l'historique'" width="15">❌</a></td>
+                <td>@vente.Total <i class="fa-solid fa-euro-sign"></i></td>
+                <td style="text-align: center"><a asp-controller="Admin" asp-action="VenteSuppression" asp-route-id="@vente.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer vente de l'historique'" width="15"><i class="fa-regular fa-trash-can"></i></a></td>
             </tr>
         }
     </tbody>
 </table>
-<div id="detailsContainer" style="display: none;">TEST JS</div>
+<div id="detailsContainer" style="display: none;">
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Produit</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Quantité</th>
+                
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var vente in Model)
+            {
+                @foreach (var produitvendu in vente.ProduitsVendus)
+                {
+                    <tr class="vente-@vente.ID">
+                        <td>@produitvendu.Produit.ID</td>
+                        <td>@produitvendu.Produit.Nom</td>
+
+                        <td>@produitvendu.Produit.Prix €</td>
+                        <td>@produitvendu.QuantiteVendue</td>
+                    </tr>
+                }
+                
+            }
+        </tbody>
+    </table>
 
 
+</div>
+
+
+
+<!-- JavaScript -->
 <script>
     // Function to display product details
-    function displayProductDetails(selectElement) {
-        // Get the selected value
-        var selectedProductName = selectElement.value;
+    let clickedVente = 0;
+    let visible = false;
 
-        // If the selected value is empty, do not display details
-        if (!selectedProductName) {
-            return;
+    function displayProductDetails(id) {
+        // Make the container visible
+       // document.getElementById('detailsContainer').style.display = 'block';
+        //$('#detailsContainer').show();
+        
+        if (id == clickedVente) {
+            if (visible) {
+                $('#detailsContainer').hide();
+                visible = false;
+            }
+            else {
+                $('#detailsContainer').show();
+                visible = true;
+            }
+        }
+        else {
+            $('#detailsContainer').show();
+            clickedVente = id;
+            visible = true;
         }
 
-        // Assuming there is an element to display details, replace 'detailsContainer' with the actual ID or class
-        var detailsContainer = document.getElementById('detailsContainer');
-
-        // Make an AJAX request or use other means to fetch details from the server based on the selected value
-        // For simplicity, I'll just update the details container with the selected product name
-        detailsContainer.innerHTML = "Details for: " + selectedProductName;
-
-        // Make the container visible
-        detailsContainer.style.display = 'block';
+        $("tr[class^='vente-']").hide();
+        $(".vente-" + id).show()
+        
     }
 
-    // Execute the function on page load
+    // Execute the function on page load if needed
     window.onload = function () {
-        var selectedOption = document.querySelector('select option:checked');
-
-        if (selectedOption) {
-            displayProductDetails(selectedOption.parentNode); // Pass the select element
-        }
+        // You may add logic here to determine the initial state
     };
 </script>
