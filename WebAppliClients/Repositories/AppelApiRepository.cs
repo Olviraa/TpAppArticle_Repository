@@ -33,7 +33,7 @@ namespace WebAppliClients.Repository
             return produit;
         }
 
-        public ProduitVendu AddProduitVendu(ProduitVenduViewModel wishlist)
+        public ProduitVenduViewModel AddProduitVendu(ProduitVenduViewModel wishlist)
         {
             string url = $"{_baseUrl}/produit/add";
             HttpClient client = new HttpClient();
@@ -47,9 +47,10 @@ namespace WebAppliClients.Repository
 
             var response = client.PostAsync(url, formContent).Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var addedProduitVendu = JsonSerializer.Deserialize<ProduitVendu>(json);
+             JsonSerializer.Serialize(wishlist);
 
-            return addedProduitVendu;
+            return wishlist;
+
         }
 
         public List<ProduitVendu> GetListProduitVendu()
@@ -74,5 +75,9 @@ namespace WebAppliClients.Repository
             return produitVendu;
         }
 
+        internal Vente PanierAremplir()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

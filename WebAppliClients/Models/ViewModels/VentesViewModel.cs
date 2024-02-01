@@ -1,4 +1,4 @@
-﻿
+﻿using ModelsCommun;
 
 namespace WebAppliClients.Models.ViewModels
 {
@@ -19,6 +19,9 @@ namespace WebAppliClients.Models.ViewModels
             public int IdProduit { get; set; }
             public int IdVente { get; set; }
             public int Quantite { get; set; }
+            public Produit Produit { get; set; }
+
+            public ProduitVendu ProduitVendu { get; set; }
         }
     }
 
