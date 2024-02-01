@@ -23,7 +23,13 @@ namespace WebAppliClients.Controllers
 
             return View(produitVenduTosend);
        }
+        [HttpPost]
+        [Route("")]
+        public IActionResult ProduitAupDateDuPanier()
+        {
 
+            return null;
+        }
 
         [HttpGet]
         [Route("Panier")]
