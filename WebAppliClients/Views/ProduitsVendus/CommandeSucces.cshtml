@@ -1,0 +1,19 @@
+﻿@using ModelsCommun
+@{
+    ViewData["Title"] = "Commande Effectuée";
+}
+
+<div class="container mt-5 text-center">
+    <h2>Commande Effectuée avec Succès!</h2>
+
+    <!-- Animation d'exemple -->
+    <div class="animate__animated animate__fadeIn animate__delay-1s">
+        <img src="https://example.com/success-icon.png" alt="Success Icon" width="100" height="100">
+    </div>
+
+    <p class="animate__animated animate__fadeIn animate__delay-2s">Merci d'avoir choisi notre service. Votre commande a été traitée avec succès.</p>
+
+    <!-- Lien pour retourner à l'accueil -->
+    <a asp-controller="Produits" asp-action="PageAccueil" class="btn btn-primary mt-3 animate__animated animate__fadeIn animate__delay-3s">Retour à l'accueil</a>
+</div>
+

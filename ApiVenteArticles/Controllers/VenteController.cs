@@ -55,15 +55,20 @@ namespace ApiVenteArticles.Controllers
         }
 
         [HttpPost]
-        [Route("delete/{id}")]
-        public void DeleteVente(int id)
+        [Route("delete/{idVente}")]
+        public bool SupprimmerUneVente(int idVente)
         {
 
-
-            _venteService.DeleteVente(id);
-
+            return _venteService.DeleteVente(idVente);
         }
 
+        [HttpPost]
+        [Route("ValiderVente/{idVente}")]
+        public bool ValiderUneVente(int idVente)
+        {
+
+            return _venteService.ValiderVente(idVente);
+        }
 
     }
 }

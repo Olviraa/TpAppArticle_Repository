@@ -56,6 +56,52 @@ namespace WebAppliClients.Controllers
             return View(produitVendu);
         }
 
+        [HttpPost]
+        [Route("SupprimerDuPanier")]
+        public IActionResult SupprimerDuPanier(int venteId, int produitId)
+        {
+            ProduitVenduService produitVenduService = new ProduitVenduService();
+            produitVenduService.DeleteProduitPanier(venteId, produitId);
+            // Rediriger vers la vue du panier après la suppression
+            return RedirectToAction("ProduitsVendus", "ProduitsVendus", new { id = venteId });
+        }
+
+        [HttpPost]
+        [Route("ValiderCommande")]
+        public IActionResult ValiderCommande(int venteId)
+        {
+            ProduitVenduService produitVenduService = new ProduitVenduService();
+
+            var retour = produitVenduService.ValiderVente(venteId);
+
+            // Rediriger vers la vue commande avec succes
+            if (retour)
+            {
+                return RedirectToAction("CommandeSucces", "ProduitsVendus");
+            }
+            else
+            {
+                return RedirectToAction("ProduitsVendus", "ProduitsVendus", new { id = venteId });
+            }
+        }
+
+        [HttpPost]
+        [Route("AnnulerCommande")]
+        public IActionResult AnnulerCommande(int venteId)
+        {
+            ProduitVenduService produitVenduService = new ProduitVenduService();
+            produitVenduService.DeleteVente(venteId);
+            // Rediriger vers la vue catalogue après la suppression
+            return RedirectToAction("ProduitsVendus", "ProduitsVendus", new { id = 0 });
+        }
+
+        [HttpGet]
+        [Route("Succes")]
+        public IActionResult CommandeSucces()
+        {
+            return View();
+        }
+
 
     }
 }

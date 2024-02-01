@@ -47,5 +47,23 @@ namespace WebAppliClients.Services
             var creatPanier = _apiRepository.PanierAremplir();
             return creatPanier;
         }
+
+        public bool DeleteProduitPanier(int idvente, int idproduit)
+        {
+            var retour = _apiRepository.DeleteProduitPanier(idvente, idproduit);
+            return retour;
+        }
+
+        public bool ValiderVente(int venteId)
+        {
+            var retour = _apiRepository.ValiderVente(venteId);
+            return retour;
+        }
+
+        public bool DeleteVente(int idvente)
+        {
+            var retour = _apiRepository.DeleteVente(idvente);
+            return retour;
+        }
     }
 }
