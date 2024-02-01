@@ -1,6 +1,6 @@
 ﻿@using ModelsCommun
 
-@model Produit
+@model ProduitViewModel
 
 <p><h4>Information sur le produit selectionné </h4></p>
 
@@ -10,22 +10,26 @@
 
     <dl class="row">
         <dt class="col-sm-2">Nom</dt>
-        <dd class="col-sm-10">@Model.Nom</dd>
+        <dd class="col-sm-10">@Model.Produit.Nom</dd>
 
         <dt class="col-sm-2">Prix</dt>
-        <dd class="col-sm-10">@Model.Prix €</dd>
+        <dd class="col-sm-10">@Model.Produit.Prix</dd>
 
         <dt class="col-sm-2">Quantité Disponible</dt>
-        <dd class="col-sm-10">@Model.QuantiteDisponible</dd>
+        <dd class="col-sm-10">@Model.Produit.QuantiteDisponible</dd>
     </dl>
-
-    <form asp-controller="ProduitsVendus" asp-action="AddProduitPanier" method="post" id="addToCartForm">
+    <form method="post" asp-controller="ProduitsVendus" asp-action="AddProduitPanier">
+        <input type="hidden" name="venteId" value="@Model.IdVente" />
+        <input type="hidden" name="produitId" value="@Model.Produit.ID" />
+        <input type="hidden" name="quantity" id="quantityHidden" value="1"> <!-- Utilisez un champ caché pour stocker la quantité -->
         <label for="quantity">Quantité:</label>
-        <input type="number" id="quantity" name="QuantiteDispo" min="1" max="@Model.QuantiteDisponible" value="1">
-
-       @*  liaison entre la quantité dispo et la quantité de produit mis dans le panier *@
-
-        
-        <button type="submit" class="btn btn-primary" >Ajouter au Panier</button>
+        <input type="number" id="quantity" name="quantity" min="1" max="@Model.Produit.QuantiteDisponible" value="1" onchange="updateHiddenQuantity()">
+        <button type="submit" class="btn btn-primary">Ajouter au Panier</button>
     </form>
 </div>
+<script>
+    function updateHiddenQuantity() {
+        var quantity = document.getElementById('quantity').value;
+        document.getElementById('quantityHidden').value = quantity;
+    }
+</script>
