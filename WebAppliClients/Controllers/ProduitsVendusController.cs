@@ -14,14 +14,21 @@ namespace WebAppliClients.Controllers
        [Route("Panier")]
        public IActionResult AddProduitPanier(int IdProduit, int IdVente, int Quantite)
        {
+            // CREATION DE LA VENTE
+
+                ProduitVenduService produitVenduCrée = new ProduitVenduService();
+                 produitVenduCrée.CreatPanier();
+
             // RECEPTION DU produitVendu DU PRODUITVENDUSERVICE
 
             int QuantiteDispo = int.Parse(Request.Form["QuantiteDisponible"]);
+            
 
             ProduitVenduService produitVenduReçu = new ProduitVenduService();
             var produitVenduTosend = produitVenduReçu.AddProduitPanier(IdProduit, IdVente, QuantiteDispo) ;
 
-            return View(produitVenduTosend);
+            //return View(produitVenduTosend);
+            return RedirectToAction("List","Produit");
        }
         [HttpPost]
         [Route("")]

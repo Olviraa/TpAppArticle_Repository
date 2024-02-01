@@ -25,12 +25,12 @@ namespace WebAppliClients.Services
             produitVendu.Quantite = Quantite;
             var addedProduitVendu =_apiRepository.AddProduitVendu(produitVendu);
 
-            ProduitVenduViewModel addedProduitVenduViewModel = new ProduitVenduViewModel();
-            addedProduitVenduViewModel.IdProduit = addedProduitVendu.Produit.ID;
-            addedProduitVenduViewModel.IdVente = addedProduitVendu.ID;
-            addedProduitVenduViewModel.Quantite = addedProduitVendu.QuantiteVendue;
+            //ProduitVenduViewModel addedProduitVenduViewModel = new ProduitVenduViewModel();
+            //addedProduitVenduViewModel.IdProduit = addedProduitVendu.Produit.ID;
+            //addedProduitVenduViewModel.IdVente = addedProduitVendu.ID;
+            //addedProduitVenduViewModel.Quantite = addedProduitVendu.QuantiteVendue;
 
-            return addedProduitVenduViewModel;
+            return addedProduitVendu;
         }
 
         public List<ProduitVendu> GetListProduitVendu()
@@ -45,5 +45,10 @@ namespace WebAppliClients.Services
             return produitVendu;
         }
 
+        public Vente CreatPanier()
+        {
+            var creatPanier = _apiRepository.PanierAremplir();
+            return creatPanier;
+        }
     }
 }
