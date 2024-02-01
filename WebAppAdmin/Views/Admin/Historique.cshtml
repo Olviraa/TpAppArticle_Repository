@@ -23,12 +23,52 @@
             <tr>
                 <td>@vente.ID</td>
                 <td>@vente.Date</td>
-                <td>@vente.ProduitsVendus</td>
+                <td>
+                    <select onchange="displayProductDetails(this)">
+                        <option value="">Voir Liste Produit(s)</option>
+                        @foreach (var produitvendu in vente.ProduitsVendus)
+                        {
+                            <option value="@produitvendu.Produit.Nom">@produitvendu.Produit.Nom</option>                          
+                        }
+                    </select>                    
+                </td>
                 <td>@vente.Total €</td>
                 <td style="text-align: center"><a asp-controller="Admin" asp-action="VenteSuppression" asp-route-id="@vente.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer vente de l'historique'" width="15">❌</a></td>
             </tr>
         }
     </tbody>
 </table>
-@* <a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-success" title="Ajouter nouveau produit">➕ Article</a>
- *@
+<div id="detailsContainer" style="display: none;">TEST JS</div>
+
+
+<script>
+    // Function to display product details
+    function displayProductDetails(selectElement) {
+        // Get the selected value
+        var selectedProductName = selectElement.value;
+
+        // If the selected value is empty, do not display details
+        if (!selectedProductName) {
+            return;
+        }
+
+        // Assuming there is an element to display details, replace 'detailsContainer' with the actual ID or class
+        var detailsContainer = document.getElementById('detailsContainer');
+
+        // Make an AJAX request or use other means to fetch details from the server based on the selected value
+        // For simplicity, I'll just update the details container with the selected product name
+        detailsContainer.innerHTML = "Details for: " + selectedProductName;
+
+        // Make the container visible
+        detailsContainer.style.display = 'block';
+    }
+
+    // Execute the function on page load
+    window.onload = function () {
+        var selectedOption = document.querySelector('select option:checked');
+
+        if (selectedOption) {
+            displayProductDetails(selectedOption.parentNode); // Pass the select element
+        }
+    };
+</script>

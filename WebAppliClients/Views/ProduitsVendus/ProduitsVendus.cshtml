@@ -1,0 +1,56 @@
+﻿@using ModelsCommun
+@using WebAppliClients.Models.ViewModels
+@model List<ProduitVendu>
+
+<div class="container mt-5">
+    <h2>Produits dans votre panier </h2>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité </th>
+                @*   <th>Action</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produitVendu in Model)
+            {
+                <tr>
+                    <td>@produitVendu.Produit.Nom</td>
+                    <td>@produitVendu.Produit.Prix</td>
+                    <td>@produitVendu.QuantiteVendue</td>
+                    <td style="text-align: center"><a asp-controller="" asp-action="" asp-route-id="@produitVendu.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer vente de l'historique'" width="15">❌</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Valider
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Merci pour votre achat!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Nous sommes ravis que vous ayez choisi notre boutique et nous espérons que vous nous ferez à nouveau confiance pour vos futurs achats. Bonne journée et à bientôt !
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>   
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+</div>
