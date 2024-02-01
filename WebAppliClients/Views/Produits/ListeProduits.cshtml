@@ -1,4 +1,5 @@
-﻿@using WebAppliClients.Models.ViewModel
+﻿@using ModelsCommun
+@using WebAppliClients.Models.ViewModel
 @model ListViewModel
 
 <div class="container mt-5">
@@ -22,7 +23,7 @@
                     <td>@produit.Prix</td>
                     <td>@produit.QuantiteDisponible</td>
                     <td>
-                        <a asp-action="DetailProduit" asp-route-id="@produit.ID">Selectionner</a>
+                        <a asp-action="DetailProduit"  asp-route-venteId="@Model.IdVente"  asp-route-id="@produit.ID">Selectionner</a>
                     </td>
                 </tr>
             } 
@@ -30,5 +31,5 @@
     </table>
 
     <!-- Ajout bouton pour visualiser le panier -->
-    <a asp-controller="ProduitsVendus" asp-action="ProduitsVendus" class=" btn btn-success" title="Panier">Panier</a>
+    <a asp-controller="ProduitsVendus" asp-action="ProduitsVendus" asp-route-id="@Model.IdVente" class=" btn btn-success" title="Panier">Panier</a>
 </div>

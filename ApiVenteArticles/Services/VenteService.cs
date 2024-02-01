@@ -29,7 +29,14 @@ namespace ApiVenteArticles.Services
 
         public Vente GetVente(int id)
         {
-            return _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(p => p.ID == id);
+            var mavente = _dbContext.Ventes.Include(p => p.ProduitsVendus).ThenInclude(pv => pv.Produit).FirstOrDefault(p => p.ID == id);
+            if (mavente == null)
+            {
+                mavente = new Vente();
+                mavente.ProduitsVendus = new List<ProduitVendu>();
+                return mavente;
+            }
+            return mavente;
         }
 
         public void DeleteVente(int id)

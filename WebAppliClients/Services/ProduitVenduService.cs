@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Extensions.Logging;
 using ModelsCommun;
 using WebAppliClients.Repository;
 using static WebAppliClients.Models.ViewModels.VentesViewModel;
@@ -16,27 +17,23 @@ namespace WebAppliClients.Services
         }
 
         // service pour controllerproduitvendu  
-        public ProduitVenduViewModel AddProduitPanier(int IdProduit, int IdVente, int Quantite)
+        public int AddProduitPanier(int IdVente, int IdProduit, int Quantite)
         {
-            ProduitVenduViewModel produitVendu = new ProduitVenduViewModel();
             
-            produitVendu.IdProduit = IdProduit;
-            produitVendu.IdVente = IdVente;
-            produitVendu.Quantite = Quantite;
-            var addedProduitVendu =_apiRepository.AddProduitVendu(produitVendu);
+            var idDeLaVente =_apiRepository.AddProduitVendu(IdVente, IdProduit, Quantite);
 
             //ProduitVenduViewModel addedProduitVenduViewModel = new ProduitVenduViewModel();
             //addedProduitVenduViewModel.IdProduit = addedProduitVendu.Produit.ID;
             //addedProduitVenduViewModel.IdVente = addedProduitVendu.ID;
             //addedProduitVenduViewModel.Quantite = addedProduitVendu.QuantiteVendue;
 
-            return addedProduitVendu;
+            return idDeLaVente;
         }
 
-        public List<ProduitVendu> GetListProduitVendu()
+        public Vente GetListProduitVendu(int id)
         {
-            var listeProduitVendu = _apiRepository.GetListProduitVendu();
-            return listeProduitVendu;
+            var ventePanier = _apiRepository.GetListProduitVendu(id);
+            return ventePanier;
         }
 
         public ProduitVendu GetProduitVendu(int id)
