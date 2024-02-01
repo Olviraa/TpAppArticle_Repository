@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Views\ContactAdmin\" />
+    <Folder Include="Views\Ventes\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

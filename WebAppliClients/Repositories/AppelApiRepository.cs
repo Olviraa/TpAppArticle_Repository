@@ -3,7 +3,6 @@ using ModelsCommun;
 using System.Text;
 using System.Text.Json;
 using static WebAppliClients.Models.ViewModels.VentesViewModel;
-using static WebAppliClients.Models.ViewModels.ListProduitVenduViewModel;
 
 namespace WebAppliClients.Repository
 {
@@ -55,24 +54,24 @@ namespace WebAppliClients.Repository
 
         public List<ProduitVendu> GetListProduitVendu()
         {
-            string url = $"{_baseUrl}/Panier";
+            string url = $"{_baseUrl}/produitvendu";
             HttpClient client = new HttpClient();
             var response = client.GetAsync(url).Result;
             var productJson = response.Content.ReadAsStringAsync().Result;
-            List<ProduitVendu> panier = JsonSerializer.Deserialize<List<ProduitVendu>>(productJson);
+            List<ProduitVendu> produitsVendus = JsonSerializer.Deserialize<List<ProduitVendu>>(productJson);
 
-            return panier;
+            return produitsVendus;
         }
 
         public ProduitVendu GetProduitVendu(int id)
         {
-            string url = $"{_baseUrl}/ProduitPanier/{id}";
+            string url = $"{_baseUrl}/produitvendu/{id}";
             HttpClient client = new HttpClient();
             var response = client.GetAsync(url).Result;
             var productJson = response.Content.ReadAsStringAsync().Result;
-            ProduitVendu produitPanier = JsonSerializer.Deserialize<ProduitVendu>(productJson);
+            ProduitVendu produitVendu = JsonSerializer.Deserialize<ProduitVendu>(productJson);
 
-            return produitPanier;
+            return produitVendu;
         }
 
     }
