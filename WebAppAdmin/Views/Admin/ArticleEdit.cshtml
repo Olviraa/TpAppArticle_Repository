@@ -30,7 +30,8 @@
                         <input class="form-control form-control-sm" type="text" name="produitNom" value="@produit.Nom">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm" type="text" name="produitPrix" value="@produit.Prix">
+                            <input class="form-control form-control-sm" type="text" name="produitPrix" value="@produit.Prix €>
+                        ">
                     </td>
                     <td>
                         <input class="form-control form-control-sm" type="text" name="produitQuantiteDisponible" value="@produit.QuantiteDisponible"
@@ -45,7 +46,7 @@
                 {
                     <td>@produit.ID</td>
                     <td>@produit.Nom</td>
-                    <td>@produit.Prix</td>
+                    <td>@produit.Prix <i class="fa-solid fa-euro-sign"></i></td>
                     <td>@produit.QuantiteDisponible</td>
                 }
 
@@ -55,7 +56,7 @@
     </tbody>
 </table>
 
-<button type="submit" class="btn btn-primary" style="position: relative; bottom: 1px; left: 92%">Confirmer</button>
+    <button type="submit" class="btn btn-primary" style="position: relative; bottom: 1px; left: 90%"><i class="fa-solid fa-circle-check fa-xl"></i>  Confirmer</button>
 </form>
 
               

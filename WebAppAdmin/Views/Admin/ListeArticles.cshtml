@@ -23,11 +23,11 @@
             <tr>
                 <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.ID</td>
                 <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Nom</td>
-                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Prix €</td>
+                <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.Prix <i class="fa-solid fa-euro-sign"></i></td>
                 <td onclick="window.location.href='@Url.Action("ArticleEdit", "Admin", new { id = produit.ID })';" style="cursor:pointer;">@produit.QuantiteDisponible</td>
-                <td style="text-align: center"><a asp-controller="Admin" asp-action="ArticleSuppression" asp-route-id="@produit.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer article" width="15">❌</a></td>
+                <td style="text-align: center"><a asp-controller="Admin" asp-action="ArticleSuppression" asp-route-id="@produit.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer article" width="15"><i class="fa-regular fa-trash-can"></i></a></td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-outline-success" title="Ajouter nouveau produit">➕ Article</a>
+<a asp-controller="Admin" asp-action="ArticleNouveau" class="btn btn-success" title="Ajouter nouveau produit"><i class="fa-solid fa-circle-plus fa-xl"></i>  Article</a>
