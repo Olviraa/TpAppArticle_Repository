@@ -1,4 +1,5 @@
 ﻿using ModelsCommun;
+using WebAppliClients.Models.ViewModel;
 using WebAppliClients.Repository;
 
 namespace WebAppliClients.Services
@@ -12,13 +13,13 @@ namespace WebAppliClients.Services
             _apiRepository = new AppelApiRepository();
         }
 
-        public List<Produit> GetProduit()
+        public ListViewModel GetProduitView()
         {
-            var listeProduit = _apiRepository.GetList();
+            var listeProduit = _apiRepository.GetListView();
             return listeProduit;
         }
 
-        public Produit GetProduit(int id) 
+        public ProduitViewModel GetProduit(int id) 
         {
          var produit = _apiRepository.GetProduit(id);
 

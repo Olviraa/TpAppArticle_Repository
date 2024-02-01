@@ -1,56 +1,77 @@
 ﻿@using ModelsCommun
 @using WebAppliClients.Models.ViewModels
-@model List<ProduitVendu>
+
+@{
+    ViewData["Title"] = "Panier";
+}
+
+@model Vente
 
 <div class="container mt-5">
-    <h2>Produits dans votre panier </h2>
+    <h2>Votre Panier</h2>
     <hr>
 
+    <!-- Tableau pour afficher le contenu du panier -->
     <table class="table">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Quantité </th>
-                @*   <th>Action</th> *@
+                <th>Produit</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var produitVendu in Model)
+            @foreach (var item in Model.ProduitsVendus)
             {
                 <tr>
-                    <td>@produitVendu.Produit.Nom</td>
-                    <td>@produitVendu.Produit.Prix</td>
-                    <td>@produitVendu.QuantiteVendue</td>
-                    <td style="text-align: center"><a asp-controller="" asp-action="" asp-route-id="@produitVendu.ID" type="button" class="btn btn-labeled btn-danger btn-sm" title="Supprimer vente de l'historique'" width="15">❌</a></td>
+                    <td>@item.Produit.Nom</td>
+                    <td>@item.Produit.Prix</td>
+                    <td>@item.QuantiteVendue</td>
+                    <td>@(item.Produit.Prix * item.QuantiteVendue)</td>
+                    <td>
+                        <!-- Utiliser un formulaire POST pour la suppression -->
+                        <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
+                            <input type="hidden" name="venteId" value="@Model.ID" />
+                            <input type="hidden" name="produitId" value="@item.ID" />
+                            <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
+                        </form>
+                    </td>
                 </tr>
             }
+            <!-- Ligne totale -->
+            <tr>
+                <td colspan="3" class="text-right"><strong>Total de la commande:</strong></td>
+                <td style="color: white; background-color: red;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue)</td>
+                <td></td>
+            </tr>
         </tbody>
     </table>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Valider
-    </button>
+    <!-- Bouton pour valider la vente -->
+    @if (Model.ProduitsVendus.Count == 0)
+    {
+        <p style="font-weight: bold; color: white; background-color: red; padding: 10px;">
+            Votre panier est vide. Continuez vos achats.
+        </p>
+    }
+    else
+    {
+        <div class="btn-group" role="group" aria-label="Actions">
+            <!-- Bouton pour valider la vente -->
+            <form method="post" asp-controller="ProduitsVendus" asp-action="ValiderCommande" asp-route-venteId="@Model.ID">
+                <button type="submit" class="btn btn-primary">Valider la Commande</button>
+            </form>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Merci pour votre achat!</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Nous sommes ravis que vous ayez choisi notre boutique et nous espérons que vous nous ferez à nouveau confiance pour vos futurs achats. Bonne journée et à bientôt !
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>   
-                </div>
-            </div>
+            <!-- Bouton pour annuler la commande -->
+            <form method="post" asp-controller="ProduitsVendus" asp-action="AnnulerCommande" asp-route-venteId="@Model.ID">
+                <button type="submit" class="btn btn-danger">Annuler commande</button>
+            </form>
         </div>
+    }
+    <div class="btn-group" role="group" aria-label="Actions">
+        <!-- Bouton pour continuer les achats -->
+        <a class="btn btn-success" href="@Url.Action("ListeProduits", "Produits", new {venteId = Model.ID })">Continuer mes achats</a>
     </div>
-
- 
-
 </div>

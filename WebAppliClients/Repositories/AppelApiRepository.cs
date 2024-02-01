@@ -1,7 +1,9 @@
 ﻿
+using Microsoft.Extensions.Logging;
 using ModelsCommun;
 using System.Text;
 using System.Text.Json;
+using WebAppliClients.Models.ViewModel;
 using static WebAppliClients.Models.ViewModels.VentesViewModel;
 
 namespace WebAppliClients.Repository
@@ -22,46 +24,62 @@ namespace WebAppliClients.Repository
             return listeProduit;
         }
 
-        public Produit GetProduit(int id)
+        // Pour récuperer la liste de produit avec l'ID de la vente
+        public ListViewModel GetListView()
         {
-            string url = $"{_baseUrl}/produit/{id}";
+            string url = $"{_baseUrl}/produit/list";
             HttpClient client = new HttpClient();
             var response = client.GetAsync(url).Result;
             var productJson = response.Content.ReadAsStringAsync().Result;
-            Produit produit = JsonSerializer.Deserialize<Produit>(productJson);
+            ListViewModel listeProduitView = JsonSerializer.Deserialize<ListViewModel>(productJson);
+
+            return listeProduitView;
+        }
+
+        public ProduitViewModel GetProduit(int id)
+        {
+            string url = $"{_baseUrl}/produit/view/{id}";
+            HttpClient client = new HttpClient();
+            var response = client.GetAsync(url).Result;
+            var productJson = response.Content.ReadAsStringAsync().Result;
+            ProduitViewModel produit = JsonSerializer.Deserialize<ProduitViewModel>(productJson);
 
             return produit;
         }
 
-        public ProduitVenduViewModel AddProduitVendu(ProduitVenduViewModel wishlist)
+        public int AddProduitVendu(int venteId, int produitId, int quantite)
         {
-            string url = $"{_baseUrl}/produit/add";
+            string url = $"{_baseUrl}/produitvendu/add/{venteId}/{produitId}/{quantite}";
             HttpClient client = new HttpClient();
 
-            Dictionary<string, string> formData = new Dictionary<string, string>();
-            formData["quantite"] = wishlist.Quantite.ToString();
-            formData["idevente"] = wishlist.IdVente.ToString();
-            formData["idproduit"] = wishlist.IdProduit.ToString();
+            var panierData = new PanierData
+            {
+                VenteId = venteId,
+                ProduitId = produitId,
+                Quantite = quantite
+            };
 
-            FormUrlEncodedContent formContent = new FormUrlEncodedContent(formData);
+            var productJson = JsonSerializer.Serialize(panierData);
+            var content = new StringContent(productJson, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync(url, formContent).Result;
-            var json = response.Content.ReadAsStringAsync().Result;
-             JsonSerializer.Serialize(wishlist);
+            var response = client.PostAsync(url, content).Result;
 
-            return wishlist;
+            var IdVente = response.Content.ReadAsStringAsync().Result;
+            int monIdVente = JsonSerializer.Deserialize<int>(IdVente);
+
+            return monIdVente;
 
         }
 
-        public List<ProduitVendu> GetListProduitVendu()
+        public Vente GetListProduitVendu(int id)
         {
-            string url = $"{_baseUrl}/produitvendu";
+            string url = $"{_baseUrl}/vente/{id}";
             HttpClient client = new HttpClient();
             var response = client.GetAsync(url).Result;
-            var productJson = response.Content.ReadAsStringAsync().Result;
-            List<ProduitVendu> produitsVendus = JsonSerializer.Deserialize<List<ProduitVendu>>(productJson);
+            var venteJson = response.Content.ReadAsStringAsync().Result;
+            Vente ventePanier = JsonSerializer.Deserialize<Vente>(venteJson);
 
-            return produitsVendus;
+            return ventePanier;
         }
 
         public ProduitVendu GetProduitVendu(int id)
