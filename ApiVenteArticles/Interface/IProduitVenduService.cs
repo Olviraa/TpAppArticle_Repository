@@ -6,12 +6,12 @@ namespace ApiVenteArticles.Interface
     public interface IProduitVenduService
     {
 
-        public List<ProduitVendu> GetProductsVendre();
+        public List<ProduitVendu> GetProductsVendre(int venteId);
 
         public ProduitVendu GetProductVendre(int id);
-        public ProduitVendu AddProduitVendre(int idvente, int idproduit, int quantite);
+        public int AddProduitVendre(int idvente, int idproduit, int quantite);
 
-        public void DeleteProduct(int id);
+        public bool DeleteProduitVendu(int idVente,int idProduit);
 
     }
 }
