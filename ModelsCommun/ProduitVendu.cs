@@ -20,5 +20,6 @@ namespace ModelsCommun
         // et le produit en question pour les propriétés (pour faire comprendre à EntityFramework)
         [JsonPropertyName("produit")]
         public Produit Produit { get; set; }
+
     }
 }

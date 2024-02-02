@@ -12,6 +12,7 @@ namespace ApiVenteArticles.Repositories
 
             optionsBuilder.UseSqlServer("Server=DESKTOP-DTUC5BR\\SQLEXPRESS;Database=VenteProduit;Trusted_Connection=True;TrustServerCertificate=True");
 
+
         }
       
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
