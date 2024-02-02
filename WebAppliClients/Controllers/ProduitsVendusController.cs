@@ -54,7 +54,7 @@ namespace WebAppliClients.Controllers
         //[Route("")] // Panier et idvente
         //public IActionResult ProduitsVendusAcocher()
         //{
-        //   ProduitVenduService produitCocherService =new ProduitVenduService();
+        //    ProduitVenduService produitCocherService = new ProduitVenduService();
         //    var produitsVendu = produitCocherService.GetProduitVenduSelect();
         //    return View(produitsVendu);
         //}

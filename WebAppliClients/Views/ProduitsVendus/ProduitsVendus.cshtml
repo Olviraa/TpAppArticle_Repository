@@ -23,6 +23,8 @@
             </tr>
         </thead>
         <tbody>
+
+
             @foreach (var item in Model.ProduitsVendus)
             {
                 <tr>
@@ -35,11 +37,35 @@
                         <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
                             <input type="hidden" name="venteId" value="@Model.ID" />
                             <input type="hidden" name="produitId" value="@item.Produit.ID" />
+
+                            <!-- Utiliser une case à cocher au lieu du bouton -->
+                            <input type="checkbox" name="produitsSelectionnes" value="@item.Produit.ID" />
+
                             <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
                         </form>
                     </td>
                 </tr>
             }
+
+
+           @*  @foreach (var item in Model.ProduitsVendus)
+            {
+                <tr>
+                    <td>@item.Produit.Nom</td>
+                    <td>@item.Produit.Prix €</td>
+                    <td>@item.QuantiteVendue</td>
+                    <td>@(item.Produit.Prix * item.QuantiteVendue) €</td>
+                    <td>
+                        <!-- Utiliser un formulaire POST pour la suppression -->
+                        <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
+                            <input type="hidden" name="venteId" value="@Model.ID" />
+                            <input type="hidden" name="produitId" value="@item.Produit.ID" />
+                            <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
+                          
+                        </form>
+                    </td>
+                </tr>
+            } *@
             <!-- Ligne totale -->
             <tr>
                 <td colspan="3" class="text-right"><strong>Total de la commande:</strong></td>
@@ -66,7 +92,7 @@
 
             <!-- Bouton pour annuler la commande -->
             <form method="post" asp-controller="ProduitsVendus" asp-action="AnnulerCommande" asp-route-venteId="@Model.ID">
-               @*  <input type="checkbox" name="selectedProducts" value="@Model.ID" @(Model.ProduitsVendus.IsSelected ? "checked" : "")> *@
+                
             </form>
         </div>
     }
