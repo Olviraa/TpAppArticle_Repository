@@ -18,7 +18,7 @@
                 <th>Produit</th>
                 <th>Prix unitaire</th>
                 <th>Quantité</th>
-                <th>Total</th>
+                <th >Total</th>
                 <th style="text-align:center">Actions</th>
             </tr>
         </thead>
@@ -41,7 +41,7 @@
             <!-- Ligne totale -->
             <tr>
                 <td colspan="3" class="text-right"><strong>Total de la commande:</strong></td>
-                <td style="width: 20px; color: black; background-color: lightsalmon;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue) €</td>
+                <td style="color: black; background-color: lightsalmon;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue) €</td>
                 <td></td>
             </tr>
         </tbody>
