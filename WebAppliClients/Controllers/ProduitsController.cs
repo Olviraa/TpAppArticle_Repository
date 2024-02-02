@@ -30,6 +30,7 @@ namespace WebAppliClients.Controllers
             ProduitService produitService = new ProduitService();
             var listViewModel = produitService.GetProduitView();
             listViewModel.IdVente = venteId;
+            ViewBag.IdPanier = venteId;
             return View(listViewModel);
         }
         [HttpGet]
@@ -39,6 +40,7 @@ namespace WebAppliClients.Controllers
             ProduitService produitService = new ProduitService();
             var produit = produitService.GetProduit(id);
             produit.IdVente = venteId;
+            ViewBag.IdPanier = venteId;
             return View(produit);
         }
 

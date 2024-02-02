@@ -39,7 +39,8 @@ namespace WebAppliClients.Controllers
         public IActionResult ProduitsVendus(int id)
         {
             ProduitVenduService produitVenduService = new ProduitVenduService();
-            var ventePanier = produitVenduService.GetListProduitVendu(id);          
+            var ventePanier = produitVenduService.GetListProduitVendu(id);
+            ViewBag.IdPanier = id;
             return View(ventePanier);
         }
         [HttpGet]
@@ -48,6 +49,7 @@ namespace WebAppliClients.Controllers
         {
             ProduitVenduService produitService = new ProduitVenduService();
             var produitVendu = produitService.GetProduitVendu(id);
+            ViewBag.IdPanier = id;
             return View(produitVendu);
         }
         //[HttpGet]
@@ -65,6 +67,7 @@ namespace WebAppliClients.Controllers
         {
             ProduitVenduService produitVenduService = new ProduitVenduService();
             produitVenduService.DeleteProduitPanier(venteId, produitId);
+            ViewBag.IdPanier = venteId;
             // Rediriger vers la vue du panier après la suppression
             return RedirectToAction("ProduitsVendus", "ProduitsVendus", new { id = venteId });
         }
@@ -119,6 +122,7 @@ namespace WebAppliClients.Controllers
 
             // puis je valide la vrai vente
             var retour = produitVenduService.ValiderVente(venteId);
+            ViewBag.IdPanier = venteId;
 
             // Rediriger vers la vue commande avec succes
             if (retour)
@@ -137,6 +141,7 @@ namespace WebAppliClients.Controllers
         {
             ProduitVenduService produitVenduService = new ProduitVenduService();
             produitVenduService.DeleteVente(venteId);
+            ViewBag.IdPanier = venteId;
             // Rediriger vers la vue catalogue après la suppression
             return RedirectToAction("ProduitsVendus", "ProduitsVendus", new { id = 0 });
         }
