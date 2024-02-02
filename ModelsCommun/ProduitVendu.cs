@@ -21,7 +21,5 @@ namespace ModelsCommun
         [JsonPropertyName("produit")]
         public Produit Produit { get; set; }
 
-        // pour retirer le produit du panier
-        public bool IsSelected { get; set; } 
     }
 }

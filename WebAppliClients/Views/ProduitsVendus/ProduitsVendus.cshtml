@@ -10,7 +10,7 @@
 <div class="container mt-5">
     <h2>Votre Panier</h2>
     <hr>
-
+    <form method="post" asp-controller="ProduitsVendus" asp-action="ValiderCommande" asp-route-venteId="@Model.ID">
     <!-- Tableau pour afficher le contenu du panier -->
     <table class="table">
         <thead>
@@ -33,39 +33,11 @@
                     <td>@item.QuantiteVendue</td>
                     <td>@(item.Produit.Prix * item.QuantiteVendue) €</td>
                     <td>
-                        <!-- Utiliser un formulaire POST pour la suppression -->
-                        <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
-                            <input type="hidden" name="venteId" value="@Model.ID" />
-                            <input type="hidden" name="produitId" value="@item.Produit.ID" />
-
-                            <!-- Utiliser une case à cocher au lieu du bouton -->
-                            <input type="checkbox" name="produitsSelectionnes" value="@item.Produit.ID" />
-
-                            <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
-                        </form>
+                        <input type="checkbox" name="@item.Produit.ID" checked />
                     </td>
                 </tr>
             }
 
-
-           @*  @foreach (var item in Model.ProduitsVendus)
-            {
-                <tr>
-                    <td>@item.Produit.Nom</td>
-                    <td>@item.Produit.Prix €</td>
-                    <td>@item.QuantiteVendue</td>
-                    <td>@(item.Produit.Prix * item.QuantiteVendue) €</td>
-                    <td>
-                        <!-- Utiliser un formulaire POST pour la suppression -->
-                        <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
-                            <input type="hidden" name="venteId" value="@Model.ID" />
-                            <input type="hidden" name="produitId" value="@item.Produit.ID" />
-                            <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
-                          
-                        </form>
-                    </td>
-                </tr>
-            } *@
             <!-- Ligne totale -->
             <tr>
                 <td colspan="3" class="text-right"><strong>Total de la commande:</strong></td>
@@ -86,16 +58,17 @@
     {
         <div class="btn-group" role="group" aria-label="Actions">
             <!-- Bouton pour valider la vente -->
-            <form method="post" asp-controller="ProduitsVendus" asp-action="ValiderCommande" asp-route-venteId="@Model.ID">
+            
                 <button type="submit" class="btn btn-primary">Valider la Commande</button>
-            </form>
+           
 
             <!-- Bouton pour annuler la commande -->
             <form method="post" asp-controller="ProduitsVendus" asp-action="AnnulerCommande" asp-route-venteId="@Model.ID">
-                
+                <button type="submit" class="btn btn-danger">Annuler la Commande</button>
             </form>
         </div>
     }
+    </form>
     <div class="btn-group" role="group" aria-label="Actions">
         <!-- Bouton pour continuer les achats -->
         <a class="btn btn-success" href="@Url.Action("ListeProduits", "Produits", new {venteId = Model.ID })">Continuer mes achats</a>
