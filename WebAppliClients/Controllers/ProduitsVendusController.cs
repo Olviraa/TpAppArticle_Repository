@@ -14,6 +14,7 @@ namespace WebAppliClients.Controllers
        [Route("Panier")]
        public IActionResult AddProduitPanier(int venteId, int produitId, int quantity)
        {
+
             // CREATION DE LA VENTE
 
                 //ProduitVenduService produitVenduCrée = new ProduitVenduService();
@@ -28,16 +29,10 @@ namespace WebAppliClients.Controllers
             var IdDeLaVente = produitVenduReçu.AddProduitPanier(venteId, produitId, quantity) ;
 
             //return View(produitVenduTosend);
+
             return RedirectToAction("ListeProduits", "Produits", new { venteId = IdDeLaVente });
+
        }
-
-        [HttpPost]
-        [Route("")]
-        public IActionResult ProduitAupDateDuPanier()
-        {
-
-            return null;
-        }
 
         [HttpGet]
         [Route("PanierList/{id}")]
@@ -55,6 +50,14 @@ namespace WebAppliClients.Controllers
             var produitVendu = produitService.GetProduitVendu(id);
             return View(produitVendu);
         }
+        //[HttpGet]
+        //[Route("")] // Panier et idvente
+        //public IActionResult ProduitsVendusAcocher()
+        //{
+        //    ProduitVenduService produitCocherService = new ProduitVenduService();
+        //    var produitsVendu = produitCocherService.GetProduitVenduSelect();
+        //    return View(produitsVendu);
+        //}
 
         [HttpPost]
         [Route("SupprimerDuPanier")]
@@ -70,8 +73,51 @@ namespace WebAppliClients.Controllers
         [Route("ValiderCommande")]
         public IActionResult ValiderCommande(int venteId)
         {
+
             ProduitVenduService produitVenduService = new ProduitVenduService();
 
+            //Liste des (des ID) produit à valider
+            var listechecked = Request.Form.ToList();
+            var nombre = listechecked.Count;
+            
+
+            // Je recupère la liste des produits de la vente
+            var ventePanier = produitVenduService.GetListProduitVendu(venteId);
+            var listeproduit = ventePanier.ProduitsVendus.ToList();
+
+            // Je crée une liste de produits à rétirer de la vente
+            List<ProduitVendu> listeproduitsup = new List<ProduitVendu>();
+
+            bool cocher;
+
+            foreach (var produiselectionne  in listeproduit)
+            {
+                cocher = false;
+
+                for (int i = 0; i < nombre -1; i++)
+                {
+                    var item = listechecked.ElementAtOrDefault(i);
+                    if (produiselectionne.Produit.ID == int.Parse(item.Key))
+                    {
+                        cocher = true;
+                    }
+                }
+
+                if (!cocher)
+                {
+                    listeproduitsup.Add(produiselectionne);
+                }
+            }
+            
+
+            // Je retire les produit si il y en a
+            foreach (var item in listeproduitsup)
+            {
+                produitVenduService.DeleteProduitPanier(venteId, item.Produit.ID);
+            }
+
+
+            // puis je valide la vrai vente
             var retour = produitVenduService.ValiderVente(venteId);
 
             // Rediriger vers la vue commande avec succes
@@ -103,5 +149,12 @@ namespace WebAppliClients.Controllers
         }
 
 
+        [HttpPost]
+        [Route("")]
+        public IActionResult ProduitToUpDateDuPanier()
+        {
+
+            return null;
+        }
     }
 }

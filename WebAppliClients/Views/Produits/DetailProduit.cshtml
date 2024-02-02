@@ -1,37 +1,53 @@
-﻿@using ModelsCommun
+﻿
+@using ModelsCommun
 
 @model ProduitViewModel
 
-<p><h4>Information sur le produit selectionné </h4></p>
-<p style="font-weight: bold; color: green;">En Stock</p>
-
 <div class="container mt-5">
-    <h3>Détails du Produit</h3>
+    <h3 class="text-primary" color="black">Détails du Produit</h3>
     <hr>
 
-    <dl class="row">
-        <dt class="col-sm-2">Nom</dt>
-        <dd class="col-sm-10">@Model.Produit.Nom</dd>
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Nom</dt>
+                <dd class="col-sm-8 font-weight-bold">@Model.Produit.Nom</dd>
 
-        <dt class="col-sm-2">Prix</dt>
-        <dd class="col-sm-10">@Model.Produit.Prix</dd>
+                <dt class="col-sm-4">Prix</dt>
+                <dd class="col-sm-8 font-weight-bold text-success">@Model.Produit.Prix €</dd>
 
-        <dt class="col-sm-2">Quantité Disponible</dt>
-        <dd class="col-sm-10">@Model.Produit.QuantiteDisponible</dd>
-    </dl>
+                <dt class="col-sm-4">Quantité Disponible</dt>
+                <dd class="col-sm-8 font-weight-bold">@Model.Produit.QuantiteDisponible</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <form id="addToCartForm" method="post" asp-controller="ProduitsVendus" asp-action="AddProduitPanier">
+                <fieldset>
+                    @* <legend class="text-primary">Ajouter au Panier</legend> *@
 
-    <form method="post" asp-controller="ProduitsVendus" asp-action="AddProduitPanier">
-        <input type="hidden" name="venteId" value="@Model.IdVente" />
-        <input type="hidden" name="produitId" value="@Model.Produit.ID" />
-        <input type="hidden" name="quantity" id="quantityHidden" value="1"> <!-- Utilisez un champ caché pour stocker la quantité -->
-        <label for="quantity">Quantité:</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="@Model.Produit.QuantiteDisponible" value="1" onchange="updateHiddenQuantity()">
-        <button type="submit" class="btn btn-primary">Ajouter au Panier</button>
-    </form>
+                    <input type="hidden" name="venteId" value="@Model.IdVente" />
+                    <input type="hidden" name="produitId" value="@Model.Produit.ID" />
+
+                    <div class="form-group">
+                        <label for="quantity">Quantité:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="@Model.Produit.QuantiteDisponible" value="1" class="form-control" onchange="updateHiddenQuantity()">
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="addToCart()">Ajouter au Panier</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>
+
 <script>
     function updateHiddenQuantity() {
         var quantity = document.getElementById('quantity').value;
         document.getElementById('quantityHidden').value = quantity;
+    }
+
+    function addToCart() {
+        // Ajoutez ici une logique supplémentaire si nécessaire avant de soumettre le formulaire
+        document.getElementById('addToCartForm').submit();
     }
 </script>

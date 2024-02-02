@@ -3,17 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title @ViewData["Title"] = "Store Project"></title>
     <link rel="shortcut icon" href="/css/SPP.jpg">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/3145d710ea.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="~/WebAppliClients.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img src="~/css/SPP.jpg" height="70px" /> </a>
+                <a class="button" style="margin-bottom: 0px" title="Retour à l'accueil" href="/"> <img src="~/css/logo-tojjm-green-violet-shirt.jpg" height="90px" /> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,34 +24,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-
+                            
                             @* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="PageAccueil"> <img src="~/css/welcome.png" width="200px"></a> *@
-                            <a class="button" style="margin-bottom: 0px" title="Retour à l'accueil" href="/"> <img src="~/css/welcome.png" width="150px" /></a>
+                            @* <a class="button" style="margin-bottom: 0px" title="Retour à l'accueil" href="/"> <img src="~/css/welcome.png" width="100px" /></a> *@
                         </li>
                          
                     </ul>
                 </div>
-               @*  <div class="container-fluid">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                <a asp-controller="" asp-action="" title="Compte client">
+                    <i class="fa-solid fa-user" style="display:block;margin-right:15px;color: #db576b;font-size: 30px;"></i>
+                </a>
+                  @* <a asp-controller="" asp-action="" title="Compte client"><i class="fa-solid fa-barcode" style="display:block;margin-right:10px;color: #141414;"></i></a> *@
+                <a asp-controller="Produits" asp-action="ListeProduits" asp-route-venteId="0" class="fa-solid fa-bars" title="Liste des produits" style="display:block;margin-right:15px; color: #db576b; font-size: 30px; </a>
+                    /* <i class="fa-solid fa-bars" style="display:block;margin-right:15px; color: #db576b; font-size: 30px;"></i>
+                </a>
+                
+                @* <div>pour séparer les deux images</div> *@
+                <a asp-controller="ProduitsVendus" asp-action="AddProduitPanier" title="Panier">
+                    <i class="fa-solid fa-cart-shopping" style="display:block;margin-right:15px; color: #db576b; font-size: 30px;"></i>
+                </a>
 
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="ProductsList" class="accordion-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="60" fill="black-color" class="bi bi-card-list" viewBox="0 0 16 16">
-                                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
-                                    <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
-                                </svg>
-                            </a>
-
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="ProductsList" class="accordion-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="60" fill="black-color" class="bi bi-bag" viewBox="0 0 16 16" >
-                                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                                  
-                </div> *@
             </div>
+
         </nav>
     </header>
     <div class="container">
@@ -59,17 +56,16 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            
+        &copy; 2024 - WebAppliClient - <a href="">Privacy</a>
+            @* <i class="fa-solid fa-barcode" style="display:block;margin-right:20px; color: #db576b; font-size: 30px;"></spani>
+            <i class="fa-solid fa-location-dot" style="display:block;margin-right:20px; color: #db576b; font-size: 30px;"></i> *@
         </div>
     </footer>
     <div b-21nb1t6dc7 class="container">
-       
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    <br />
-     @*    &copy; 2024 - WebAppliClient - <a href="">Privacy</a> *@
     </div>
 </body>
 </html>
