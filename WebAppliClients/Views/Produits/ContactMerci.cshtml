@@ -1,17 +1,17 @@
 ﻿@using ModelsCommun
 @{
-    ViewData["Title"] = "Commande Effectuée";
+    ViewData["Title"] = "Demande de contact envoyée";
 }
 
 <div class="container mt-5 text-center">
-    <h2>Commande Effectuée avec Succès!</h2>
+    <h2>Demande de contact envoyée avec succès!</h2>
 
     <!-- Animation d'exemple -->
     <div class="animate__animated animate__fadeIn animate__delay-1s">
-        <img src="css/Merci.jpg" alt="Success Icon"  height="170">
+        <i class="fa-solid fa-thumbs-up"></i>
     </div>
 
-    <p class="animate__animated animate__fadeIn animate__delay-2s">Merci d'avoir choisi notre service. Votre commande a été traitée avec succès.</p>
+    <p class="animate__animated animate__fadeIn animate__delay-2s">Nous reviendrons vers vous au plus vite. Merci pour votre confiance.</p>
 
     <!-- Lien pour retourner à l'accueil -->
     <a asp-controller="Produits" asp-action="PageAccueil" class="btn btn-primary mt-3 animate__animated animate__fadeIn animate__delay-3s">Retour à l'accueil</a>

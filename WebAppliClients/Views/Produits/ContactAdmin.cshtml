@@ -39,14 +39,14 @@
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Your name">
+                            <input type="text" id="name" name="name" class="form-control shadow-none" placeholder="Votre Nom">
                         </div>
                     </div>
                     <!--Grid column-->
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="email" name="email" class="form-control" placeholder="Your email">
+                            <input type="text" id="email" name="email" class="form-control shadow-none" placeholder="Votre email">
                         </div>
                     </div>
                     <!--Grid column-->
@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form mb-0">
-                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
+                            <input type="text" id="subject" name="subject" class="form-control shadow-none" placeholder="Sujet">
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="col-md-12">
 
                         <div class="md-form">
-                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" placeholder="Message"></textarea>
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea shadow-none" placeholder="Message"></textarea>
                         </div>
 
                     </div>
@@ -81,7 +81,7 @@
             </form>
 
             <div class="text-center text-md-left">
-                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                <a asp-controller="Produits" asp-action="ContactMerci" class="btn btn-primary">Send</a>
             </div>
             <div class="status"></div>
         </div>
