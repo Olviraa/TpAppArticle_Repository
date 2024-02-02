@@ -11,7 +11,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Prix</th>
-                <th>Quantité Disponible</th>
+                <th>Etat</th>
               @*   <th>Action</th> *@
             </tr>
         </thead>
@@ -20,10 +20,20 @@
             {
                 <tr>
                     <td>@produit.Nom</td>
-                        <td>@produit.Prix €</td>
-                    <td>@produit.QuantiteDisponible</td>
+                    <td>@produit.Prix €</td>
+                    @if (@produit.QuantiteDisponible > 0)
+                    {
+                        <td style="font-weight: bold; color: green;">En Stock</td>
+                    }
+                    else
+                    {
+                        <td style="font-weight: bold; color: red;">En Rupture</td>
+                    }
                     <td>
-                        <a asp-action="DetailProduit"  asp-route-venteId="@Model.IdVente"  asp-route-id="@produit.ID">Selectionner</a>
+                        @if (@produit.QuantiteDisponible > 0)
+                        {
+                            <a asp-action="DetailProduit" asp-route-venteId="@Model.IdVente" asp-route-id="@produit.ID">Selectionner</a>
+                        }
                     </td>
                 </tr>
             } 
@@ -31,5 +41,15 @@
     </table>
 
     <!-- Ajout bouton pour visualiser le panier -->
-    <a asp-controller="ProduitsVendus" asp-action="ProduitsVendus" asp-route-id="@Model.IdVente" class=" btn btn-success" title="Panier">Panier</a>
+    @if (Model.IdVente == 0)
+    {
+        <p style="font-weight: bold; color: white; background-color: red; padding: 10px;">
+            Votre panier est vide. Ajoutez des produits avant de le visualiser.
+        </p>
+    }
+    else
+    {
+        <a asp-controller="ProduitsVendus" asp-action="ProduitsVendus" asp-route-id="@Model.IdVente" class=" btn btn-success" title="Panier">Panier</a>
+    }
+    
 </div>

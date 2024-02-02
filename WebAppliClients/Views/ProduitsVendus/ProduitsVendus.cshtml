@@ -27,14 +27,14 @@
             {
                 <tr>
                     <td>@item.Produit.Nom</td>
-                    <td>@item.Produit.Prix</td>
+                    <td>@item.Produit.Prix €</td>
                     <td>@item.QuantiteVendue</td>
-                    <td>@(item.Produit.Prix * item.QuantiteVendue)</td>
+                    <td>@(item.Produit.Prix * item.QuantiteVendue) €</td>
                     <td>
                         <!-- Utiliser un formulaire POST pour la suppression -->
                         <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
                             <input type="hidden" name="venteId" value="@Model.ID" />
-                            <input type="hidden" name="produitId" value="@item.ID" />
+                            <input type="hidden" name="produitId" value="@item.Produit.ID" />
                             <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
                         </form>
                     </td>
@@ -43,7 +43,7 @@
             <!-- Ligne totale -->
             <tr>
                 <td colspan="3" class="text-right"><strong>Total de la commande:</strong></td>
-                <td style="color: white; background-color: red;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue)</td>
+                <td style="color: white; background-color: red;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue) €</td>
                 <td></td>
             </tr>
         </tbody>

@@ -42,10 +42,28 @@ namespace WebAppliClients.Services
             return produitVendu;
         }
 
-        //public ProduitVendu GetProduitVenduSelect() // id produit et idvente
-        //{
-        //    var produitSelect = _apiRepository.GetProduitVenduSelect();
-        //    return produitSelect;
-        //}
+        public Vente CreatPanier()
+        {
+            var creatPanier = _apiRepository.PanierAremplir();
+            return creatPanier;
+        }
+
+        public bool DeleteProduitPanier(int idvente, int idproduit)
+        {
+            var retour = _apiRepository.DeleteProduitPanier(idvente, idproduit);
+            return retour;
+        }
+
+        public bool ValiderVente(int venteId)
+        {
+            var retour = _apiRepository.ValiderVente(venteId);
+            return retour;
+        }
+
+        public bool DeleteVente(int idvente)
+        {
+            var retour = _apiRepository.DeleteVente(idvente);
+            return retour;
+        }
     }
 }

@@ -93,9 +93,58 @@ namespace WebAppliClients.Repository
             return produitVendu;
         }
 
-        //public ProduitVendu GetProduitVenduSelect()
-        //{
-        //   return null;
-        //}
+        internal Vente PanierAremplir()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteProduitPanier(int idvente, int idproduit)
+        {
+            string url = $"{_baseUrl}/produitvendu/delete/{idvente}/{idproduit}";
+            HttpClient client = new HttpClient();
+            var panierData = new PanierData
+            {
+                VenteId = idvente,
+                ProduitId = idproduit,
+                Quantite = 0
+            };
+
+            var productJson = JsonSerializer.Serialize(panierData);
+            var content = new StringContent(productJson, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, content).Result;
+
+            var retourJson = response.Content.ReadAsStringAsync().Result;
+            bool retour = JsonSerializer.Deserialize<bool>(retourJson);
+            return retour;
+        }
+
+        public bool ValiderVente(int idvente)
+        {
+            string url = $"{_baseUrl}/vente/ValiderVente/{idvente}";
+            HttpClient client = new HttpClient();
+            var productJson = JsonSerializer.Serialize(idvente);
+            var content = new StringContent(productJson, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, content).Result;
+
+            var retourJson = response.Content.ReadAsStringAsync().Result;
+            bool retour = JsonSerializer.Deserialize<bool>(retourJson);
+            return retour;
+        }
+
+        public bool DeleteVente(int idVente)
+        {
+            string url = $"{_baseUrl}/vente/delete/{idVente}";
+            HttpClient client = new HttpClient();
+            var productJson = JsonSerializer.Serialize(idVente);
+            var content = new StringContent(productJson, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, content).Result;
+
+            var retourJson = response.Content.ReadAsStringAsync().Result;
+            bool retour = JsonSerializer.Deserialize<bool>(retourJson);
+            return retour;
+        }
     }
 }
