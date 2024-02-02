@@ -48,5 +48,12 @@ namespace WebAppliClients.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("ContactSent")]
+        public IActionResult ContactMerci()
+        {
+            return View();
+        }
     }
 }

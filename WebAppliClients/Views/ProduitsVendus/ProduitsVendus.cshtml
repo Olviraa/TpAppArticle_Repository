@@ -19,7 +19,7 @@
                 <th>Prix unitaire</th>
                 <th>Quantité</th>
                 <th>Total</th>
-                <th>Actions</th>
+                <th style="text-align:center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,12 +30,12 @@
                     <td>@item.Produit.Prix €</td>
                     <td>@item.QuantiteVendue</td>
                     <td>@(item.Produit.Prix * item.QuantiteVendue) €</td>
-                    <td>
+                    <td style="text-align:center">
                         <!-- Utiliser un formulaire POST pour la suppression -->
                         <form method="post" asp-controller="ProduitsVendus" asp-action="SupprimerDuPanier">
                             <input type="hidden" name="venteId" value="@Model.ID" />
                             <input type="hidden" name="produitId" value="@item.Produit.ID" />
-                            <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa-regular fa-trash-can"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -43,7 +43,7 @@
             <!-- Ligne totale -->
             <tr>
                 <td colspan="3" class="text-right"><strong>Total de la commande:</strong></td>
-                <td style="color: white; background-color: red;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue) €</td>
+                <td style="width: 20px; color: black; background-color: lightsalmon;">@Model.ProduitsVendus.Sum(item => item.Produit.Prix * item.QuantiteVendue) €</td>
                 <td></td>
             </tr>
         </tbody>
@@ -52,7 +52,7 @@
     <!-- Bouton pour valider la vente -->
     @if (Model.ProduitsVendus.Count == 0)
     {
-        <p style="font-weight: bold; color: white; background-color: red; padding: 10px;">
+        <p style="font-weight: bold; color: white; background-color: lightsalmon; padding: 10px;">
             Votre panier est vide. Continuez vos achats.
         </p>
     }
@@ -61,7 +61,7 @@
         <div class="btn-group" role="group" aria-label="Actions">
             <!-- Bouton pour valider la vente -->
             <form method="post" asp-controller="ProduitsVendus" asp-action="ValiderCommande" asp-route-venteId="@Model.ID">
-                <button type="submit" class="btn btn-primary">Valider la Commande</button>
+                <button type="submit" class="btn btn-primary" style="margin-right: 5px">Valider la Commande</button>
             </form>
 
             <!-- Bouton pour annuler la commande -->
