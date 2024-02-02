@@ -12,6 +12,7 @@
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>Etat</th>
+                <th>Action</th>
               @*   <th>Action</th> *@
             </tr>
         </thead>
@@ -32,7 +33,7 @@
                     <td>
                         @if (@produit.QuantiteDisponible > 0)
                         {
-                            <a asp-action="DetailProduit" asp-route-venteId="@Model.IdVente" asp-route-id="@produit.ID">Selectionner</a>
+                            <a asp-action="DetailProduit" asp-route-venteId="@Model.IdVente" asp-route-id="@produit.ID" class="btn btn-primary btn-sm">Selectionner</a>
                         }
                     </td>
                 </tr>
