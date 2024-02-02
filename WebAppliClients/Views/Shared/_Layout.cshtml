@@ -29,12 +29,19 @@
                          
                     </ul>
                 </div>
-                 <a asp-controller="" asp-action="" title="Compte client"><i class="fa-solid fa-user" style="display:block;margin-right:10px;color: #141414;"></i></a>
+                <a asp-controller="" asp-action="" title="Compte client">
+                    <i class="fa-solid fa-user" style="display:block;margin-right:15px;color: #db576b;font-size: 30px;"></i>
+                </a>
                   @* <a asp-controller="" asp-action="" title="Compte client"><i class="fa-solid fa-barcode" style="display:block;margin-right:10px;color: #141414;"></i></a> *@
-                <a asp-controller="Produits" asp-action="ListeProduits" title="Liste des produits"> <i class="fa-solid fa-bars" style="color: #db576b;"></i></a>
+                <a asp-controller="Produits" asp-action="ListeProduits" title="Liste des produits">
+                    <i class="fa-solid fa-bars" style="display:block;margin-right:15px; color: #db576b; font-size: 30px;"></i>
+                </a>
                 
                 @* <div>pour séparer les deux images</div> *@
-                <a asp-controller="ProduitsVendus" asp-action="ProduitsVendus" title="Panier"> <i class="fa-solid fa-cart-shopping" style="color: #0d0d0d;"></i></a>
+                <a asp-controller="ProduitsVendus" asp-action="AddProduitPanier" title="Panier">
+                    <i class="fa-solid fa-cart-shopping" style="display:block;margin-right:15px; color: #db576b; font-size: 30px;"></i>
+                </a>
+
             </div>
 
         </nav>
@@ -47,18 +54,16 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-        &copy; 2024 - WebAppliClient - <a href="">Privacy</a> 
-        <a asp-controller="" asp-action="" title="Compte client"><i class="fa-solid fa-barcode" style="display:block;margin-right:10px;color: #141414;"></i></a>
+        &copy; 2024 - WebAppliClient - <a href="">Privacy</a>
+            @* <i class="fa-solid fa-barcode" style="display:block;margin-right:20px; color: #db576b; font-size: 30px;"></spani>
+            <i class="fa-solid fa-location-dot" style="display:block;margin-right:20px; color: #db576b; font-size: 30px;"></i> *@
         </div>
     </footer>
     <div b-21nb1t6dc7 class="container">
-       
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    <br />
-      @*   &copy; 2024 - WebAppliClient - <a href="">Privacy</a> *@
     </div>
 </body>
 </html>

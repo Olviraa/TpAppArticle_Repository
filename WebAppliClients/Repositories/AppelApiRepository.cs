@@ -93,5 +93,9 @@ namespace WebAppliClients.Repository
             return produitVendu;
         }
 
+        //public ProduitVendu GetProduitVenduSelect()
+        //{
+        //   return null;
+        //}
     }
 }

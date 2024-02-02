@@ -34,14 +34,6 @@ namespace WebAppliClients.Controllers
 
        }
 
-        [HttpPost]
-        [Route("")]
-        public IActionResult ProduitAupDateDuPanier()
-        {
-
-            return null;
-        }
-
         [HttpGet]
         [Route("PanierList/{id}")]
         public IActionResult ProduitsVendus(int id)
@@ -58,7 +50,22 @@ namespace WebAppliClients.Controllers
             var produitVendu = produitService.GetProduitVendu(id);
             return View(produitVendu);
         }
+        //[HttpGet]
+        //[Route("")] // Panier et idvente
+        //public IActionResult ProduitsVendusAcocher()
+        //{
+        //   ProduitVenduService produitCocherService =new ProduitVenduService();
+        //    var produitsVendu = produitCocherService.GetProduitVenduSelect();
+        //    return View(produitsVendu);
+        //}
 
 
+        [HttpPost]
+        [Route("")]
+        public IActionResult ProduitToUpDateDuPanier()
+        {
+
+            return null;
+        }
     }
 }

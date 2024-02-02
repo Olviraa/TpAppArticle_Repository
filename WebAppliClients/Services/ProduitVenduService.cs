@@ -42,5 +42,10 @@ namespace WebAppliClients.Services
             return produitVendu;
         }
 
+        //public ProduitVendu GetProduitVenduSelect() // id produit et idvente
+        //{
+        //    var produitSelect = _apiRepository.GetProduitVenduSelect();
+        //    return produitSelect;
+        //}
     }
 }
