@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace WebAppAdmin.Repository
 {
-    internal class APIRepo
+    public class APIRepo
     {
         private readonly string _apiUrl = "http://localhost:5101/";
 

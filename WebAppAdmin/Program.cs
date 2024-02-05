@@ -1,7 +1,13 @@
+using WebAppAdmin.Repository;
+using WebAppAdmin.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<APIRepo>();
 
 var app = builder.Build();
 
