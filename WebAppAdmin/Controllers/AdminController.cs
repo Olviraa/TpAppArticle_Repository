@@ -10,6 +10,14 @@ namespace WebAppAdmin.Controllers
     [Route("/")]
     public class AdminController : Controller
     {
+        private readonly AdminService _adminService;
+        //private readonly APIRepo _apiRepo;
+        public AdminController(AdminService adminService)
+        { 
+            _adminService = adminService;
+            //_adminService = new AdminService();
+            //_apiRepo = new APIRepo();
+        }
         // GET: AdminController
         [Route("")]
         public ActionResult AdminHome()
@@ -21,9 +29,9 @@ namespace WebAppAdmin.Controllers
         [Route("Articles")]
         public ActionResult ListeArticles()
         {
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
             List<Produit> produits = new List<Produit>();
-            produits = adminService.GetListeProduitService();
+            produits = _adminService.GetListeProduitService();
             
             return View(produits);
         }
@@ -32,9 +40,9 @@ namespace WebAppAdmin.Controllers
         [Route("Historique")]
         public ActionResult Historique()
         {
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
             List<Vente> ventes = new List<Vente>();
-            ventes = adminService.GetHistoriqueService();
+            ventes = _adminService.GetHistoriqueService();
 
             return View(ventes);
         }
@@ -43,9 +51,9 @@ namespace WebAppAdmin.Controllers
         [Route("Articles/{id}")]
         public ActionResult ArticleEdit(int id)
         {
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
             List<Produit> produits = new List<Produit>();
-            produits = adminService.GetListeProduitService();
+            produits = _adminService.GetListeProduitService();
            
             return View(produits);
         }
@@ -66,9 +74,9 @@ namespace WebAppAdmin.Controllers
             produitUpdated.QuantiteDisponible = QuantiteDisponibleUpdated;
 
 
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
             
-            adminService.UpdateProduitService(produitUpdated);
+            _adminService.UpdateProduitService(produitUpdated);
 
             return RedirectToAction("ListeArticles");
         }
@@ -79,9 +87,9 @@ namespace WebAppAdmin.Controllers
         {
             int IdDeleted = id;             
             
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
 
-            adminService.DeleteProduitService(IdDeleted);
+            _adminService.DeleteProduitService(IdDeleted);
 
             return RedirectToAction("ListeArticles");
         }
@@ -92,9 +100,9 @@ namespace WebAppAdmin.Controllers
         {
             int IdDeleted = id;             
 
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
 
-            adminService.DeleteVenteService(IdDeleted);
+            _adminService.DeleteVenteService(IdDeleted);
 
             return RedirectToAction("Historique");
         }
@@ -103,9 +111,9 @@ namespace WebAppAdmin.Controllers
         [Route("Articles/Nouveau")]
         public ActionResult ArticleNouveau()
         {
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
             List<Produit> produits = new List<Produit>();
-            produits = adminService.GetListeProduitService();
+            produits = _adminService.GetListeProduitService();
 
             return View(produits);
         }
@@ -125,9 +133,9 @@ namespace WebAppAdmin.Controllers
             produitUpdated.QuantiteDisponible = QuantiteDisponibleUpdated;
 
 
-            AdminService adminService = new AdminService();
+            //AdminService adminService = new AdminService();
 
-            adminService.CreateProduitService(produitUpdated);
+            _adminService.CreateProduitService(produitUpdated);
 
             return RedirectToAction("ListeArticles");
         }
